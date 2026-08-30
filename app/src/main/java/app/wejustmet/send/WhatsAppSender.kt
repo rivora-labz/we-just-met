@@ -23,7 +23,9 @@ object WhatsAppSender {
         }
         return try {
             if (withJid) {
-                intent.setPackage(SendConfig.WHATSAPP_PACKAGE)
+                val target = installedWhatsAppPackage(context)
+                    ?: return context.getString(R.string.error_whatsapp_missing)
+                intent.setPackage(target)
                 intent.putExtra(
                     SendConfig.WHATSAPP_JID_EXTRA,
                     SendConfig.jidFor(SendConfig.TEST_WHATSAPP_NUMBER),
@@ -39,6 +41,12 @@ object WhatsAppSender {
             context.getString(R.string.error_whatsapp_missing)
         }
     }
+
+    /** First installed package from the sender priority list, or null. */
+    private fun installedWhatsAppPackage(context: Context): String? =
+        SendConfig.SENDER_PACKAGE_PRIORITY.firstOrNull { pkg ->
+            runCatching { context.packageManager.getPackageInfo(pkg, 0) }.isSuccess
+        }
 
     /** Copies the bundled test image into the FileProvider-served cache dir. */
     private fun stageTestImage(context: Context): Uri {

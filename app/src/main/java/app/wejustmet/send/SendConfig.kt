@@ -6,10 +6,15 @@ package app.wejustmet.send
  * on-phone A/B test (jid direct-to-thread vs plain share sheet).
  */
 object SendConfig {
-    /** Founder's own WhatsApp number (E.164) for the step-1 A/B test only. */
-    const val TEST_WHATSAPP_NUMBER = "+000000000000"
+    /** Founder's business WhatsApp number (E.164) for the step-1 A/B test only. */
+    const val TEST_WHATSAPP_NUMBER = "+971551758694"
 
     const val WHATSAPP_PACKAGE = "com.whatsapp"
+    const val WHATSAPP_BUSINESS_PACKAGE = "com.whatsapp.w4b"
+
+    /** jid path targets the first of these that is installed on the device. */
+    val SENDER_PACKAGE_PRIORITY = listOf(WHATSAPP_PACKAGE, WHATSAPP_BUSINESS_PACKAGE)
+
     const val WHATSAPP_JID_EXTRA = "jid"
     const val WHATSAPP_JID_SUFFIX = "@s.whatsapp.net"
 
