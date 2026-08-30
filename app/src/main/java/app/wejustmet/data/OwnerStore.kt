@@ -18,6 +18,8 @@ class OwnerStore(context: Context) {
         name = prefs.getString(KEY_NAME, null) ?: AppConfig.OWNER_NAME,
         whatsappNumber = prefs.getString(KEY_WHATSAPP, null) ?: "",
         linkedinUrl = prefs.getString(KEY_LINKEDIN, null) ?: AppConfig.OWNER_LINKEDIN_URL,
+        about = prefs.getString(KEY_ABOUT, null) ?: "",
+        instagramUrl = prefs.getString(KEY_INSTAGRAM, null) ?: "",
     )
 
     fun isOnboarded(): Boolean = prefs.contains(KEY_NAME)
@@ -27,6 +29,8 @@ class OwnerStore(context: Context) {
             putString(KEY_NAME, profile.name.trim())
             putString(KEY_WHATSAPP, profile.whatsappNumber.trim())
             putString(KEY_LINKEDIN, profile.linkedinUrl.trim())
+            putString(KEY_ABOUT, profile.about.trim())
+            putString(KEY_INSTAGRAM, profile.instagramUrl.trim())
         }
     }
 
@@ -35,5 +39,7 @@ class OwnerStore(context: Context) {
         const val KEY_NAME = "name"
         const val KEY_WHATSAPP = "whatsapp"
         const val KEY_LINKEDIN = "linkedin"
+        const val KEY_ABOUT = "about"
+        const val KEY_INSTAGRAM = "instagram"
     }
 }

@@ -72,6 +72,16 @@ fun OnboardingScreen(initial: OwnerProfile, onSave: (OwnerProfile) -> Unit) {
                 OwnerField(stringResource(R.string.field_your_linkedin), profile.linkedinUrl) {
                     profile = profile.copy(linkedinUrl = it)
                 }
+                OwnerField(stringResource(R.string.field_your_instagram), profile.instagramUrl) {
+                    profile = profile.copy(instagramUrl = it)
+                }
+                OwnerField(
+                    label = stringResource(R.string.field_your_about),
+                    value = profile.about,
+                    singleLine = false,
+                ) {
+                    profile = profile.copy(about = it)
+                }
                 Spacer(Modifier.height(4.dp))
                 PrimaryGreenButton(
                     label = stringResource(R.string.cta_onboarding_save),
@@ -84,12 +94,18 @@ fun OnboardingScreen(initial: OwnerProfile, onSave: (OwnerProfile) -> Unit) {
 }
 
 @Composable
-private fun OwnerField(label: String, value: String, onChange: (String) -> Unit) {
+private fun OwnerField(
+    label: String,
+    value: String,
+    singleLine: Boolean = true,
+    onChange: (String) -> Unit,
+) {
     OutlinedTextField(
         value = value,
         onValueChange = onChange,
         label = { Text(label) },
-        singleLine = true,
+        singleLine = singleLine,
+        minLines = if (singleLine) 1 else 3,
         modifier = Modifier.fillMaxWidth(),
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = Tokens.BrandPrimary,

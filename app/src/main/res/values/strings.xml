@@ -17,6 +17,8 @@
     <string name="field_your_name">Your name</string>
     <string name="field_your_whatsapp">Your WhatsApp number</string>
     <string name="field_your_linkedin">Your LinkedIn URL</string>
+    <string name="field_your_instagram">Your Instagram link (optional)</string>
+    <string name="field_your_about">About you: job, what you do, what you like (optional)</string>
     <string name="cta_onboarding_save">Save</string>
     <string name="people_title">People you met</string>
     <string name="menu_people">People you met</string>

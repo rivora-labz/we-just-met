@@ -52,7 +52,7 @@ fun ReviewScreen(
     var messageEdited by remember { mutableStateOf(false) }
     var message by remember { mutableStateOf("") }
     // Template tracks live field edits until the user touches the message itself.
-    val templated = MessageTemplate.compose(draft, owner.name, owner.linkedinUrl)
+    val templated = MessageTemplate.compose(draft, owner)
     val shownMessage = if (messageEdited) message else templated
     val context = LocalContext.current
     val selfie = remember {
