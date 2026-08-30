@@ -9,7 +9,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/settings.gradle.kts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_settings_gradle_kts",
-      "community": 17,
+      "community": 19,
       "norm_label": "settings.gradle.kts"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/build.gradle.kts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_build_gradle_kts",
-      "community": 18,
+      "community": 20,
       "norm_label": "build.gradle.kts"
     },
     {
@@ -34,52 +34,52 @@
       "label": "Screen",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L33",
+      "source_location": "L46",
       "id": "mainactivity_screen",
       "community": 0,
       "norm_label": "screen"
     },
     {
-      "label": "Home",
+      "label": "Onboarding",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L34",
-      "id": "mainactivity_home",
+      "source_location": "L47",
+      "id": "mainactivity_onboarding",
       "community": 0,
-      "norm_label": "home"
+      "norm_label": "onboarding"
     },
     {
       "label": "Capture",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L35",
+      "source_location": "L48",
       "id": "mainactivity_capture",
       "community": 0,
       "norm_label": "capture"
     },
     {
+      "label": "People",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
+      "source_location": "L49",
+      "id": "mainactivity_people",
+      "community": 0,
+      "norm_label": "people"
+    },
+    {
       "label": "Review",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L36",
+      "source_location": "L50",
       "id": "mainactivity_review",
       "community": 0,
       "norm_label": "review"
     },
     {
-      "label": "Send",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L37",
-      "id": "mainactivity_send",
-      "community": 0,
-      "norm_label": "send"
-    },
-    {
       "label": "Success",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L38",
+      "source_location": "L51",
       "id": "mainactivity_success",
       "community": 0,
       "norm_label": "success"
@@ -88,7 +88,7 @@
       "label": "MainActivity",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L41",
+      "source_location": "L54",
       "id": "mainactivity_mainactivity",
       "community": 0,
       "norm_label": "mainactivity"
@@ -97,7 +97,7 @@
       "label": ".onCreate()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L42",
+      "source_location": "L55",
       "id": "mainactivity_mainactivity_oncreate",
       "community": 0,
       "norm_label": ".oncreate()"
@@ -106,10 +106,19 @@
       "label": "JustMetApp()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L61",
+      "source_location": "L74",
       "id": "mainactivity_justmetapp",
       "community": 0,
       "norm_label": "justmetapp()"
+    },
+    {
+      "label": "DrawerItem()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
+      "source_location": "L179",
+      "id": "mainactivity_draweritem",
+      "community": 0,
+      "norm_label": "draweritem()"
     },
     {
       "label": "PrimaryGreenButton.kt",
@@ -117,7 +126,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/PrimaryGreenButton.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_primarygreenbutton_kt",
-      "community": 7,
+      "community": 8,
       "norm_label": "primarygreenbutton.kt"
     },
     {
@@ -126,7 +135,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/PrimaryGreenButton.kt",
       "source_location": "L37",
       "id": "primarygreenbutton_buttonspec",
-      "community": 7,
+      "community": 8,
       "norm_label": "buttonspec"
     },
     {
@@ -135,7 +144,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/PrimaryGreenButton.kt",
       "source_location": "L46",
       "id": "primarygreenbutton_primarygreenbutton",
-      "community": 7,
+      "community": 8,
       "norm_label": "primarygreenbutton()"
     },
     {
@@ -144,7 +153,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/Theme.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_theme_kt",
-      "community": 11,
+      "community": 13,
       "norm_label": "theme.kt"
     },
     {
@@ -153,7 +162,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/Theme.kt",
       "source_location": "L9",
       "id": "theme_tokens",
-      "community": 11,
+      "community": 13,
       "norm_label": "tokens"
     },
     {
@@ -169,7 +178,7 @@
       "label": "OrbSpec",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L43",
+      "source_location": "L48",
       "id": "capturescreen_orbspec",
       "community": 2,
       "norm_label": "orbspec"
@@ -178,7 +187,7 @@
       "label": "CaptureScreen()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L55",
+      "source_location": "L60",
       "id": "capturescreen_capturescreen",
       "community": 2,
       "norm_label": "capturescreen()"
@@ -187,7 +196,7 @@
       "label": "OrbStage()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L95",
+      "source_location": "L110",
       "id": "capturescreen_orbstage",
       "community": 2,
       "norm_label": "orbstage()"
@@ -196,7 +205,7 @@
       "label": "Halo()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L139",
+      "source_location": "L154",
       "id": "capturescreen_halo",
       "community": 2,
       "norm_label": "halo()"
@@ -205,64 +214,10 @@
       "label": "CountdownOverlay()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L171",
+      "source_location": "L186",
       "id": "capturescreen_countdownoverlay",
       "community": 2,
       "norm_label": "countdownoverlay()"
-    },
-    {
-      "label": "HomeScreen.kt",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L1",
-      "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "community": 5,
-      "norm_label": "homescreen.kt"
-    },
-    {
-      "label": "metAgo()",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L38",
-      "id": "homescreen_metago",
-      "community": 5,
-      "norm_label": "metago()"
-    },
-    {
-      "label": "HomeScreen()",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L47",
-      "id": "homescreen_homescreen",
-      "community": 5,
-      "norm_label": "homescreen()"
-    },
-    {
-      "label": "ContactCard()",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L83",
-      "id": "homescreen_contactcard",
-      "community": 5,
-      "norm_label": "contactcard()"
-    },
-    {
-      "label": "SendScreen.kt",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/SendScreen.kt",
-      "source_location": "L1",
-      "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_sendscreen_kt",
-      "community": 12,
-      "norm_label": "sendscreen.kt"
-    },
-    {
-      "label": "SendScreen()",
-      "file_type": "code",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/SendScreen.kt",
-      "source_location": "L42",
-      "id": "sendscreen_sendscreen",
-      "community": 12,
-      "norm_label": "sendscreen()"
     },
     {
       "label": "SuccessScreen.kt",
@@ -270,7 +225,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/SuccessScreen.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_successscreen_kt",
-      "community": 13,
+      "community": 14,
       "norm_label": "successscreen.kt"
     },
     {
@@ -279,8 +234,44 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/SuccessScreen.kt",
       "source_location": "L37",
       "id": "successscreen_successscreen",
-      "community": 13,
+      "community": 14,
       "norm_label": "successscreen()"
+    },
+    {
+      "label": "PeopleScreen.kt",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L1",
+      "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "community": 6,
+      "norm_label": "peoplescreen.kt"
+    },
+    {
+      "label": "metAgo()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L40",
+      "id": "peoplescreen_metago",
+      "community": 6,
+      "norm_label": "metago()"
+    },
+    {
+      "label": "PeopleScreen()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L50",
+      "id": "peoplescreen_peoplescreen",
+      "community": 6,
+      "norm_label": "peoplescreen()"
+    },
+    {
+      "label": "ContactCard()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L93",
+      "id": "peoplescreen_contactcard",
+      "community": 6,
+      "norm_label": "contactcard()"
     },
     {
       "label": "ReviewScreen.kt",
@@ -288,26 +279,53 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/ReviewScreen.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_reviewscreen_kt",
-      "community": 8,
+      "community": 9,
       "norm_label": "reviewscreen.kt"
     },
     {
       "label": "ReviewScreen()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/ReviewScreen.kt",
-      "source_location": "L41",
+      "source_location": "L43",
       "id": "reviewscreen_reviewscreen",
-      "community": 8,
+      "community": 9,
       "norm_label": "reviewscreen()"
     },
     {
       "label": "ReviewField()",
       "file_type": "code",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/ReviewScreen.kt",
-      "source_location": "L99",
+      "source_location": "L126",
       "id": "reviewscreen_reviewfield",
-      "community": 8,
+      "community": 9,
       "norm_label": "reviewfield()"
+    },
+    {
+      "label": "OnboardingScreen.kt",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/OnboardingScreen.kt",
+      "source_location": "L1",
+      "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_onboardingscreen_kt",
+      "community": 10,
+      "norm_label": "onboardingscreen.kt"
+    },
+    {
+      "label": "OnboardingScreen()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/OnboardingScreen.kt",
+      "source_location": "L34",
+      "id": "onboardingscreen_onboardingscreen",
+      "community": 10,
+      "norm_label": "onboardingscreen()"
+    },
+    {
+      "label": "OwnerField()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/OnboardingScreen.kt",
+      "source_location": "L86",
+      "id": "onboardingscreen_ownerfield",
+      "community": 10,
+      "norm_label": "ownerfield()"
     },
     {
       "label": "MessageTemplate.kt",
@@ -315,7 +333,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/MessageTemplate.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_messagetemplate_kt",
-      "community": 9,
+      "community": 11,
       "norm_label": "messagetemplate.kt"
     },
     {
@@ -324,7 +342,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/MessageTemplate.kt",
       "source_location": "L4",
       "id": "messagetemplate_messagetemplate",
-      "community": 9,
+      "community": 11,
       "norm_label": "messagetemplate"
     },
     {
@@ -333,7 +351,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/MessageTemplate.kt",
       "source_location": "L5",
       "id": "messagetemplate_messagetemplate_compose",
-      "community": 9,
+      "community": 11,
       "norm_label": ".compose()"
     },
     {
@@ -342,7 +360,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/ContactDraft.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_contactdraft_kt",
-      "community": 14,
+      "community": 15,
       "norm_label": "contactdraft.kt"
     },
     {
@@ -351,8 +369,26 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/ContactDraft.kt",
       "source_location": "L4",
       "id": "contactdraft_contactdraft",
-      "community": 14,
+      "community": 15,
       "norm_label": "contactdraft"
+    },
+    {
+      "label": "OwnerProfile.kt",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/OwnerProfile.kt",
+      "source_location": "L1",
+      "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_ownerprofile_kt",
+      "community": 16,
+      "norm_label": "ownerprofile.kt"
+    },
+    {
+      "label": "OwnerProfile",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/OwnerProfile.kt",
+      "source_location": "L4",
+      "id": "ownerprofile_ownerprofile",
+      "community": 16,
+      "norm_label": "ownerprofile"
     },
     {
       "label": "AppConfig.kt",
@@ -360,7 +396,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/AppConfig.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_appconfig_kt",
-      "community": 15,
+      "community": 17,
       "norm_label": "appconfig.kt"
     },
     {
@@ -369,7 +405,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/AppConfig.kt",
       "source_location": "L8",
       "id": "appconfig_appconfig",
-      "community": 15,
+      "community": 17,
       "norm_label": "appconfig"
     },
     {
@@ -425,6 +461,51 @@
       "id": "convexrepo_convexrepo_uploadselfie",
       "community": 3,
       "norm_label": ".uploadselfie()"
+    },
+    {
+      "label": "OwnerStore.kt",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L1",
+      "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_data_ownerstore_kt",
+      "community": 5,
+      "norm_label": "ownerstore.kt"
+    },
+    {
+      "label": "OwnerStore",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L13",
+      "id": "ownerstore_ownerstore",
+      "community": 5,
+      "norm_label": "ownerstore"
+    },
+    {
+      "label": ".load()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L17",
+      "id": "ownerstore_ownerstore_load",
+      "community": 5,
+      "norm_label": ".load()"
+    },
+    {
+      "label": ".isOnboarded()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L23",
+      "id": "ownerstore_ownerstore_isonboarded",
+      "community": 5,
+      "norm_label": ".isonboarded()"
+    },
+    {
+      "label": ".save()",
+      "file_type": "code",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L25",
+      "id": "ownerstore_ownerstore_save",
+      "community": 5,
+      "norm_label": ".save()"
     },
     {
       "label": "WhatsAppSender.kt",
@@ -486,7 +567,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/send/SendConfig.kt",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_send_sendconfig_kt",
-      "community": 10,
+      "community": 12,
       "norm_label": "sendconfig.kt"
     },
     {
@@ -495,7 +576,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/send/SendConfig.kt",
       "source_location": "L7",
       "id": "sendconfig_sendconfig",
-      "community": 10,
+      "community": 12,
       "norm_label": "sendconfig"
     },
     {
@@ -504,7 +585,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/send/SendConfig.kt",
       "source_location": "L25",
       "id": "sendconfig_sendconfig_jidfor",
-      "community": 10,
+      "community": 12,
       "norm_label": ".jidfor()"
     },
     {
@@ -513,7 +594,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/vite.config.ts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_vite_config_ts",
-      "community": 19,
+      "community": 21,
       "norm_label": "vite.config.ts"
     },
     {
@@ -522,7 +603,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/convex/schema.ts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_convex_schema_ts",
-      "community": 16,
+      "community": 18,
       "norm_label": "schema.ts"
     },
     {
@@ -531,7 +612,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/convex/env.d.ts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_convex_env_d_ts",
-      "community": 20,
+      "community": 22,
       "norm_label": "env.d.ts"
     },
     {
@@ -603,7 +684,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/convex/_generated/dataModel.d.ts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_convex_generated_datamodel_d_ts",
-      "community": 16,
+      "community": 18,
       "norm_label": "datamodel.d.ts"
     },
     {
@@ -621,7 +702,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/convex/_generated/server.d.ts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_convex_generated_server_d_ts",
-      "community": 21,
+      "community": 23,
       "norm_label": "server.d.ts"
     },
     {
@@ -630,7 +711,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/convex/_generated/server.js",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_convex_generated_server_js",
-      "community": 22,
+      "community": 24,
       "norm_label": "server.js"
     },
     {
@@ -639,7 +720,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/convex/_generated/api.js",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_convex_generated_api_js",
-      "community": 23,
+      "community": 25,
       "norm_label": "api.js"
     },
     {
@@ -648,7 +729,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/src/App.tsx",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_src_app_tsx",
-      "community": 6,
+      "community": 7,
       "norm_label": "app.tsx"
     },
     {
@@ -657,7 +738,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/src/App.tsx",
       "source_location": "L16",
       "id": "app_metago",
-      "community": 6,
+      "community": 7,
       "norm_label": "metago()"
     },
     {
@@ -666,7 +747,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/src/App.tsx",
       "source_location": "L23",
       "id": "app_followupchip",
-      "community": 6,
+      "community": 7,
       "norm_label": "followupchip()"
     },
     {
@@ -675,7 +756,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/src/App.tsx",
       "source_location": "L30",
       "id": "app_startoftoday",
-      "community": 6,
+      "community": 7,
       "norm_label": "startoftoday()"
     },
     {
@@ -684,7 +765,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/src/main.tsx",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_src_main_tsx",
-      "community": 24,
+      "community": 26,
       "norm_label": "main.tsx"
     },
     {
@@ -693,7 +774,7 @@
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/web/src/vite-env.d.ts",
       "source_location": "L1",
       "id": "users_narayandhingra_documents_claude_projects_we_just_met_app_web_src_vite_env_d_ts",
-      "community": 25,
+      "community": 27,
       "norm_label": "vite-env.d.ts"
     }
   ],
@@ -702,7 +783,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L33",
+      "source_location": "L46",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
       "_tgt": "mainactivity_screen",
@@ -714,19 +795,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L34",
+      "source_location": "L47",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
-      "_tgt": "mainactivity_home",
+      "_tgt": "mainactivity_onboarding",
       "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
-      "target": "mainactivity_home",
+      "target": "mainactivity_onboarding",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L35",
+      "source_location": "L48",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
       "_tgt": "mainactivity_capture",
@@ -738,7 +819,19 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L36",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
+      "_tgt": "mainactivity_people",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
+      "target": "mainactivity_people",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
+      "source_location": "L50",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
       "_tgt": "mainactivity_review",
@@ -750,19 +843,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L37",
-      "weight": 1.0,
-      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
-      "_tgt": "mainactivity_send",
-      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
-      "target": "mainactivity_send",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L38",
+      "source_location": "L51",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
       "_tgt": "mainactivity_success",
@@ -774,7 +855,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L41",
+      "source_location": "L54",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
       "_tgt": "mainactivity_mainactivity",
@@ -786,7 +867,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L61",
+      "source_location": "L74",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
       "_tgt": "mainactivity_justmetapp",
@@ -795,10 +876,22 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
+      "source_location": "L179",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
+      "_tgt": "mainactivity_draweritem",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_mainactivity_kt",
+      "target": "mainactivity_draweritem",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/MainActivity.kt",
-      "source_location": "L42",
+      "source_location": "L55",
       "weight": 1.0,
       "_src": "mainactivity_mainactivity",
       "_tgt": "mainactivity_mainactivity_oncreate",
@@ -846,7 +939,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L43",
+      "source_location": "L48",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_capturescreen_kt",
       "_tgt": "capturescreen_orbspec",
@@ -858,7 +951,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L55",
+      "source_location": "L60",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_capturescreen_kt",
       "_tgt": "capturescreen_capturescreen",
@@ -870,7 +963,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L95",
+      "source_location": "L110",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_capturescreen_kt",
       "_tgt": "capturescreen_orbstage",
@@ -882,7 +975,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L139",
+      "source_location": "L154",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_capturescreen_kt",
       "_tgt": "capturescreen_halo",
@@ -894,60 +987,12 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/CaptureScreen.kt",
-      "source_location": "L171",
+      "source_location": "L186",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_capturescreen_kt",
       "_tgt": "capturescreen_countdownoverlay",
       "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_capturescreen_kt",
       "target": "capturescreen_countdownoverlay",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L38",
-      "weight": 1.0,
-      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "_tgt": "homescreen_metago",
-      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "target": "homescreen_metago",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L47",
-      "weight": 1.0,
-      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "_tgt": "homescreen_homescreen",
-      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "target": "homescreen_homescreen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/HomeScreen.kt",
-      "source_location": "L83",
-      "weight": 1.0,
-      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "_tgt": "homescreen_contactcard",
-      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_homescreen_kt",
-      "target": "homescreen_contactcard",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/SendScreen.kt",
-      "source_location": "L42",
-      "weight": 1.0,
-      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_sendscreen_kt",
-      "_tgt": "sendscreen_sendscreen",
-      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_sendscreen_kt",
-      "target": "sendscreen_sendscreen",
       "confidence_score": 1.0
     },
     {
@@ -965,8 +1010,44 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "_tgt": "peoplescreen_metago",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "target": "peoplescreen_metago",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L50",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "_tgt": "peoplescreen_peoplescreen",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "target": "peoplescreen_peoplescreen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/PeopleScreen.kt",
+      "source_location": "L93",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "_tgt": "peoplescreen_contactcard",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_peoplescreen_kt",
+      "target": "peoplescreen_contactcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/ReviewScreen.kt",
-      "source_location": "L41",
+      "source_location": "L43",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_reviewscreen_kt",
       "_tgt": "reviewscreen_reviewscreen",
@@ -978,12 +1059,36 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/ReviewScreen.kt",
-      "source_location": "L99",
+      "source_location": "L126",
       "weight": 1.0,
       "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_reviewscreen_kt",
       "_tgt": "reviewscreen_reviewfield",
       "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_reviewscreen_kt",
       "target": "reviewscreen_reviewfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/OnboardingScreen.kt",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_onboardingscreen_kt",
+      "_tgt": "onboardingscreen_onboardingscreen",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_onboardingscreen_kt",
+      "target": "onboardingscreen_onboardingscreen",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/ui/screens/OnboardingScreen.kt",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_onboardingscreen_kt",
+      "_tgt": "onboardingscreen_ownerfield",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_ui_screens_onboardingscreen_kt",
+      "target": "onboardingscreen_ownerfield",
       "confidence_score": 1.0
     },
     {
@@ -1020,6 +1125,18 @@
       "_tgt": "contactdraft_contactdraft",
       "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_contactdraft_kt",
       "target": "contactdraft_contactdraft",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/core/OwnerProfile.kt",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_ownerprofile_kt",
+      "_tgt": "ownerprofile_ownerprofile",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_core_ownerprofile_kt",
+      "target": "ownerprofile_ownerprofile",
       "confidence_score": 1.0
     },
     {
@@ -1092,6 +1209,54 @@
       "_tgt": "convexrepo_convexrepo_uploadselfie",
       "source": "convexrepo_convexrepo",
       "target": "convexrepo_convexrepo_uploadselfie",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_data_ownerstore_kt",
+      "_tgt": "ownerstore_ownerstore",
+      "source": "users_narayandhingra_documents_claude_projects_we_just_met_app_app_src_main_java_app_wejustmet_data_ownerstore_kt",
+      "target": "ownerstore_ownerstore",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "ownerstore_ownerstore",
+      "_tgt": "ownerstore_ownerstore_load",
+      "source": "ownerstore_ownerstore",
+      "target": "ownerstore_ownerstore_load",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "ownerstore_ownerstore",
+      "_tgt": "ownerstore_ownerstore_isonboarded",
+      "source": "ownerstore_ownerstore",
+      "target": "ownerstore_ownerstore_isonboarded",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app/app/src/main/java/app/wejustmet/data/OwnerStore.kt",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "ownerstore_ownerstore",
+      "_tgt": "ownerstore_ownerstore_save",
+      "source": "ownerstore_ownerstore",
+      "target": "ownerstore_ownerstore_save",
       "confidence_score": 1.0
     },
     {
