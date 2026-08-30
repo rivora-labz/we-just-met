@@ -1,14 +1,10 @@
 package app.wejustmet.send
 
 /**
- * Step-1 send seam configuration, single source of truth.
- * The jid extra is undocumented WhatsApp behavior; this config powers the
- * on-phone A/B test (jid direct-to-thread vs plain share sheet).
+ * WhatsApp send seam configuration, single source of truth.
+ * jid direct-to-thread proven on-device (PLAN step 1 verdict).
  */
 object SendConfig {
-    /** Founder-chosen target number (E.164) for the step-1 A/B test only. */
-    const val TEST_WHATSAPP_NUMBER = "+971585914562"
-
     const val WHATSAPP_PACKAGE = "com.whatsapp"
     const val WHATSAPP_BUSINESS_PACKAGE = "com.whatsapp.w4b"
 
@@ -24,9 +20,6 @@ object SendConfig {
     /** Must match the cache-path entry in res/xml/file_paths.xml. */
     const val SHARED_CACHE_DIR = "shared"
     const val FILE_PROVIDER_AUTHORITY_SUFFIX = ".fileprovider"
-
-    const val TEST_MESSAGE =
-        "Great meeting you! We Just Met send-seam test (step 1)."
 
     /** WhatsApp jid for an individual chat: digits only, no plus sign. */
     fun jidFor(e164Number: String): String =

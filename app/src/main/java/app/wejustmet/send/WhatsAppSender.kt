@@ -11,54 +11,55 @@ import java.io.File
 
 object WhatsAppSender {
 
-    /** Fires the ACTION_SEND intent. Returns an error message, or null on success. */
-    fun send(context: Context, withJid: Boolean): String? {
-        val uri = stageTestImage(context)
+    /**
+     * Fires ACTION_SEND into WhatsApp with the image staged in the chat for [e164Number]
+     * via the jid extra (proven on-device, PLAN step 1 verdict).
+     * Returns an error message, or null on success.
+     */
+    fun send(context: Context, e164Number: String, message: String, image: File): String? {
+        val uri = providerUri(context, image)
+        val target = installedWhatsAppPackage(context)
+            ?: return context.getString(R.string.error_whatsapp_missing)
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = SendConfig.IMAGE_MIME
             putExtra(Intent.EXTRA_STREAM, uri)
-            putExtra(Intent.EXTRA_TEXT, SendConfig.TEST_MESSAGE)
+            putExtra(Intent.EXTRA_TEXT, message)
             clipData = ClipData.newRawUri(null, uri)
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            setPackage(target)
+            putExtra(SendConfig.WHATSAPP_JID_EXTRA, SendConfig.jidFor(e164Number))
         }
         return try {
-            if (withJid) {
-                val target = installedWhatsAppPackage(context)
-                    ?: return context.getString(R.string.error_whatsapp_missing)
-                intent.setPackage(target)
-                intent.putExtra(
-                    SendConfig.WHATSAPP_JID_EXTRA,
-                    SendConfig.jidFor(SendConfig.TEST_WHATSAPP_NUMBER),
-                )
-                context.startActivity(intent)
-            } else {
-                context.startActivity(
-                    Intent.createChooser(intent, context.getString(R.string.share_chooser_title)),
-                )
-            }
+            context.startActivity(intent)
             null
         } catch (_: ActivityNotFoundException) {
             context.getString(R.string.error_whatsapp_missing)
         }
     }
 
-    /** First installed package from the sender priority list, or null. */
-    private fun installedWhatsAppPackage(context: Context): String? =
-        SendConfig.SENDER_PACKAGE_PRIORITY.firstOrNull { pkg ->
-            runCatching { context.packageManager.getPackageInfo(pkg, 0) }.isSuccess
-        }
-
-    /** Copies the bundled test image into the FileProvider-served cache dir. */
-    private fun stageTestImage(context: Context): Uri {
+    /**
+     * Step-4 stand-in selfie: the bundled test image staged into the shared cache dir.
+     * Step 6 replaces this with the CameraX capture writing to the same directory.
+     */
+    fun stagedDemoSelfie(context: Context): File {
         val dir = File(context.cacheDir, SendConfig.SHARED_CACHE_DIR).apply { mkdirs() }
         val file = File(dir, SendConfig.TEST_IMAGE_ASSET)
         context.assets.open(SendConfig.TEST_IMAGE_ASSET).use { input ->
             file.outputStream().use { input.copyTo(it) }
         }
-        return FileProvider.getUriForFile(
+        return file
+    }
+
+    private fun providerUri(context: Context, file: File): Uri =
+        FileProvider.getUriForFile(
             context,
             context.packageName + SendConfig.FILE_PROVIDER_AUTHORITY_SUFFIX,
             file,
         )
-    }
+
+    /** First installed package from the sender priority list, or null. */
+    private fun installedWhatsAppPackage(context: Context): String? =
+        SendConfig.SENDER_PACKAGE_PRIORITY.firstOrNull { pkg ->
+            runCatching { context.packageManager.getPackageInfo(pkg, 0) }.isSuccess
+        }
 }

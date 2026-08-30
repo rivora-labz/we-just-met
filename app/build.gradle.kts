@@ -1,6 +1,15 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinSerialization)
+}
+
+// Single source of truth for deployment config is the gitignored .env at repo root.
+val dotEnv = Properties().apply {
+    val f = rootProject.file(".env")
+    if (f.exists()) f.inputStream().use { load(it) }
 }
 
 android {
@@ -13,10 +22,14 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "0.1.0"
+
+        val convexUrl = dotEnv.getProperty("CONVEX_URL") ?: System.getenv("CONVEX_URL") ?: ""
+        buildConfigField("String", "CONVEX_URL", "\"$convexUrl\"")
     }
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -32,4 +45,8 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.material3)
+    implementation(variantOf(libs.convex.mobile) { artifactType("aar") }) {
+        isTransitive = true
+    }
+    implementation(libs.kotlinx.serialization.json)
 }

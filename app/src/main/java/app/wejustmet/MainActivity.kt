@@ -3,43 +3,40 @@ package app.wejustmet
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
-import androidx.compose.material3.Text
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import app.wejustmet.send.SendConfig
+import app.wejustmet.core.ContactDraft
+import app.wejustmet.data.ConvexRepo
 import app.wejustmet.send.WhatsAppSender
 import app.wejustmet.ui.Tokens
+import app.wejustmet.ui.screens.CaptureScreen
+import app.wejustmet.ui.screens.HomeScreen
+import app.wejustmet.ui.screens.ReviewScreen
+import app.wejustmet.ui.screens.SendScreen
+import app.wejustmet.ui.screens.SuccessScreen
+import kotlinx.coroutines.launch
+
+private sealed interface Screen {
+    data object Home : Screen
+    data object Capture : Screen
+    data class Review(val draft: ContactDraft) : Screen
+    data class Send(val draft: ContactDraft) : Screen
+    data object Success : Screen
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,104 +50,75 @@ class MainActivity : ComponentActivity() {
                     error = Tokens.StatusError,
                 ),
             ) {
-                SendSeamScreen()
+                Surface(modifier = Modifier.fillMaxSize(), color = Tokens.BgPrimary) {
+                    JustMetApp()
+                }
             }
         }
     }
 }
 
 @Composable
-private fun SendSeamScreen() {
+private fun JustMetApp() {
     val context = LocalContext.current
-    var fallbackNoJid by rememberSaveable { mutableStateOf(false) }
+    val repo = remember { ConvexRepo() }
+    val scope = rememberCoroutineScope()
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Tokens.BgPrimary) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            Text(
-                text = stringResource(R.string.app_name),
-                color = Tokens.TextPrimary,
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                text = stringResource(R.string.send_seam_title),
-                color = Tokens.TextSecondary,
-                fontSize = 16.sp,
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                text = stringResource(R.string.send_seam_subtitle),
-                color = Tokens.TextMuted,
-                fontSize = 13.sp,
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                text = stringResource(
-                    R.string.target_number_label,
-                    SendConfig.TEST_WHATSAPP_NUMBER,
-                ),
-                color = Tokens.AccentGoldText,
-                fontSize = 13.sp,
-            )
-            Spacer(Modifier.height(32.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(
-                    text = stringResource(R.string.fallback_toggle_label),
-                    color = Tokens.TextPrimary,
-                    fontSize = 15.sp,
-                    modifier = Modifier.weight(1f),
-                )
-                Switch(
-                    checked = fallbackNoJid,
-                    onCheckedChange = { fallbackNoJid = it },
-                    colors = SwitchDefaults.colors(
-                        checkedTrackColor = Tokens.BrandPrimary,
-                        uncheckedTrackColor = Tokens.SurfaceInput,
-                        uncheckedBorderColor = Tokens.BorderControl,
-                    ),
-                )
-            }
-            Spacer(Modifier.height(24.dp))
-            PrimaryGreenButton(
-                label = stringResource(
-                    if (fallbackNoJid) R.string.cta_send_share_sheet else R.string.cta_send_jid,
-                ),
-                onClick = {
-                    WhatsAppSender.send(context, withJid = !fallbackNoJid)?.let { error ->
-                        Toast.makeText(context, error, Toast.LENGTH_LONG).show()
-                    }
-                },
-            )
+    var screen by remember { mutableStateOf<Screen>(Screen.Home) }
+    var sending by remember { mutableStateOf(false) }
+    var quoteIndex by remember { mutableIntStateOf(0) }
+    val contacts by remember { repo.contacts() }.collectAsState(initial = null)
+
+    BackHandler(enabled = screen != Screen.Home) {
+        screen = when (val current = screen) {
+            is Screen.Capture -> Screen.Home
+            is Screen.Review -> Screen.Capture
+            is Screen.Send -> Screen.Review(current.draft)
+            else -> Screen.Home
         }
     }
-}
 
-@Composable
-private fun PrimaryGreenButton(label: String, onClick: () -> Unit) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(52.dp)
-            .clip(RoundedCornerShape(12.dp))
-            .background(
-                Brush.verticalGradient(
-                    listOf(Tokens.BrandPrimaryHover, Tokens.BrandPrimary, Tokens.BrandGreen),
-                ),
-            )
-            .clickable(onClick = onClick),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(text = label, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+    when (val current = screen) {
+        Screen.Home -> HomeScreen(contacts = contacts, onCapture = { screen = Screen.Capture })
+
+        Screen.Capture -> CaptureScreen(onCaptured = { screen = Screen.Review(it) })
+
+        is Screen.Review -> ReviewScreen(
+            initial = current.draft,
+            onRetakeSelfie = { screen = Screen.Capture },
+            onCompose = { screen = Screen.Send(it) },
+        )
+
+        is Screen.Send -> SendScreen(
+            draft = current.draft,
+            sending = sending,
+            onSend = { message ->
+                if (sending) return@SendScreen
+                sending = true
+                val selfie = WhatsAppSender.stagedDemoSelfie(context)
+                val error = WhatsAppSender.send(context, current.draft.phone, message, selfie)
+                if (error != null) {
+                    sending = false
+                    Toast.makeText(context, error, Toast.LENGTH_LONG).show()
+                    return@SendScreen
+                }
+                scope.launch {
+                    runCatching { repo.saveContact(current.draft, selfie) }
+                        .onFailure { failure ->
+                            Toast.makeText(context, failure.message, Toast.LENGTH_LONG).show()
+                        }
+                    sending = false
+                    screen = Screen.Success
+                }
+            },
+        )
+
+        Screen.Success -> SuccessScreen(
+            quoteIndex = quoteIndex,
+            onDone = {
+                quoteIndex += 1
+                screen = Screen.Home
+            },
+        )
     }
 }

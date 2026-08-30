@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Just Met</string>
-    <string name="send_seam_title">Send seam test</string>
-    <string name="send_seam_subtitle">A/B: WhatsApp jid extra vs plain share sheet</string>
-    <string name="target_number_label">Target: %1$s</string>
-    <string name="fallback_toggle_label">Fallback: no jid (plain share sheet)</string>
-    <string name="cta_send_jid">Send via WhatsApp (jid)</string>
-    <string name="cta_send_share_sheet">Send via share sheet (no jid)</string>
-    <string name="share_chooser_title">Share test image</string>
+    <string name="cta_we_just_met">We just met</string>
+    <string name="cta_compose_message">Compose message</string>
+    <string name="cta_send_whatsapp">Send on WhatsApp</string>
+    <string name="review_title">Their card</string>
+    <string name="review_selfie_description">Selfie</string>
+    <string name="review_retake_hint">tap the selfie to retake</string>
+    <string name="field_name">Name</string>
+    <string name="field_phone">Phone</string>
+    <string name="field_company">Company</string>
+    <string name="field_role">Role</string>
+    <string name="field_note">What we talked about</string>
+    <string name="send_title">Message for %1$s</string>
+    <string name="badge_enriched">enriched</string>
     <string name="error_whatsapp_missing">WhatsApp is not installed on this device</string>
 </resources>
