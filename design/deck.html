@@ -42,6 +42,20 @@
   .green { color:var(--brand-primary); }
   .goldt { color:var(--gold-text); }
 
+  /* ---------- presenter ---------- */
+  .presenter { display:flex; align-items:center; gap:14px; }
+  .avatar { width:56px; height:56px; border-radius:50%; overflow:hidden; flex:none;
+            background:linear-gradient(180deg, #166B4E, #12573F, #0B3D2E);
+            display:flex; align-items:center; justify-content:center;
+            color:#fff; font-weight:700; font-size:20px; letter-spacing:.02em;
+            box-shadow:0 4px 14px rgba(11,61,46,.30); border:2px solid #D4AF37; }
+  .avatar { position:relative; }
+  .avatar img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .presenter .who { line-height:1.35; }
+  .presenter .name { font-size:18px; font-weight:700; color:#0A0A0A; }
+  .presenter .contact { font-size:14px; color:rgba(0,0,0,.60); }
+  .presenter .contact a { color:#12573F; text-decoration:none; font-weight:600; }
+
   /* ---------- cards / pills ---------- */
   .card {
     background:var(--surface); border-radius:24px;
@@ -140,6 +154,13 @@
           <span class="pill green">Devin</span>
           <span class="pill green">Convex</span>
           <span class="pill green">Context.dev</span>
+        </div>
+        <div class="presenter" style="margin-top:44px;">
+          <div class="avatar"><img src="founder.jpg" alt="Narayan Dhingra" onerror="this.remove()">ND</div>
+          <div class="who">
+            <div class="name">Narayan Dhingra</div>
+            <div class="contact">spiderman.sun@gmail.com &middot; <a href="https://www.linkedin.com/in/narayandhingra/">linkedin.com/in/narayandhingra</a></div>
+          </div>
         </div>
       </div>
       <div class="col center" style="flex:1;">
@@ -291,6 +312,13 @@
       <span class="pill outline" style="font-size:17px; padding:12px 20px;">LinkedIn auto-connect via Context.dev browser actions</span>
       <span class="pill outline" style="font-size:17px; padding:12px 20px;">iOS via KMP</span>
       <span class="pill outline" style="font-size:17px; padding:12px 20px;">CRM export</span>
+    </div>
+    <div class="presenter" style="margin-top:44px; justify-content:center;">
+      <div class="avatar"><img src="founder.jpg" alt="Narayan Dhingra" onerror="this.remove()">ND</div>
+      <div class="who" style="text-align:left;">
+        <div class="name">Narayan Dhingra</div>
+        <div class="contact">spiderman.sun@gmail.com &middot; <a href="https://www.linkedin.com/in/narayandhingra/">linkedin.com/in/narayandhingra</a></div>
+      </div>
     </div>
   </section>
 
