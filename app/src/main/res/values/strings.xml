@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Just Met</string>
-    <string name="cta_we_just_met">We just met</string>
-    <string name="cta_compose_message">Compose message</string>
     <string name="cta_send_whatsapp">Send on WhatsApp</string>
     <string name="review_title">Their card</string>
     <string name="review_selfie_description">Selfie</string>
@@ -12,7 +10,18 @@
     <string name="field_company">Company</string>
     <string name="field_role">Role</string>
     <string name="field_note">What we talked about</string>
-    <string name="send_title">Message for %1$s</string>
+    <string name="field_message">Message</string>
     <string name="badge_enriched">enriched</string>
+    <string name="onboarding_title">This is you.</string>
+    <string name="onboarding_subtitle">Used to sign the message they receive.</string>
+    <string name="field_your_name">Your name</string>
+    <string name="field_your_whatsapp">Your WhatsApp number</string>
+    <string name="field_your_linkedin">Your LinkedIn URL</string>
+    <string name="cta_onboarding_save">Save</string>
+    <string name="people_title">People you met</string>
+    <string name="menu_people">People you met</string>
+    <string name="menu_your_details">Your details</string>
+    <string name="action_back">Back</string>
+    <string name="action_menu">Menu</string>
     <string name="error_whatsapp_missing">WhatsApp is not installed on this device</string>
 </resources>

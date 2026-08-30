@@ -59,6 +59,8 @@ Cards: white, 24dp radius, soft shadow (no hard borders). Generous whitespace, 4
 
 ## Screens (5 app + 1 web)
 
+**FLOW CHANGE (founder, 2026-08-30 15:35): Capture orb IS the home screen (first thing every user sees). Recent-contacts list moved behind a hamburger side menu ("People you met"), owner setup also in the menu ("Your details"). Screens 3+4 merged: Review card carries the auto-populated editable message and a single "Send on WhatsApp" CTA; the separate Send screen is deleted. Screen 0 onboarding shipped (not cut): implemented with SharedPreferences instead of DataStore (sync first read, no start-screen flicker).**
+
 ### 0. First-run setup (one-time, skippable)
 - Shown once after install: single card, "This is you."
 - Fields: my name, my WhatsApp number, my LinkedIn URL, optional photo.

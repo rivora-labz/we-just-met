@@ -9,13 +9,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,7 +31,6 @@ import androidx.compose.ui.unit.sp
 import app.wejustmet.R
 import app.wejustmet.core.AppConfig
 import app.wejustmet.data.ContactRow
-import app.wejustmet.ui.PrimaryGreenButton
 import app.wejustmet.ui.Tokens
 
 private const val MINUTE_MS = 60_000.0
@@ -44,16 +46,26 @@ private fun metAgo(metAt: Double, now: Long): String {
     }
 }
 
+/** History list, reachable from the side menu. */
 @Composable
-fun HomeScreen(contacts: List<ContactRow>?, onCapture: () -> Unit) {
-    Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
-        Text(
-            text = AppConfig.PRODUCT_NAME,
-            color = Tokens.BrandGreen,
-            fontSize = 28.sp,
-            fontWeight = FontWeight.ExtraBold,
-        )
-        Spacer(Modifier.height(16.dp))
+fun PeopleScreen(contacts: List<ContactRow>?, onBack: () -> Unit) {
+    Column(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            IconButton(onClick = onBack) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = stringResource(R.string.action_back),
+                    tint = Tokens.BrandGreen,
+                )
+            }
+            Text(
+                text = stringResource(R.string.people_title),
+                color = Tokens.BrandGreen,
+                fontSize = 22.sp,
+                fontWeight = FontWeight.ExtraBold,
+            )
+        }
+        Spacer(Modifier.size(8.dp))
 
         Box(modifier = Modifier.weight(1f)) {
             if (contacts.isNullOrEmpty()) {
@@ -67,7 +79,7 @@ fun HomeScreen(contacts: List<ContactRow>?, onCapture: () -> Unit) {
                 val now = System.currentTimeMillis()
                 LazyColumn(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
-                    contentPadding = PaddingValues(bottom = 16.dp),
+                    contentPadding = PaddingValues(bottom = 24.dp),
                 ) {
                     items(contacts, key = { it._id }) { contact ->
                         ContactCard(contact, now)
@@ -75,8 +87,6 @@ fun HomeScreen(contacts: List<ContactRow>?, onCapture: () -> Unit) {
                 }
             }
         }
-
-        PrimaryGreenButton(label = stringResource(R.string.cta_we_just_met), onClick = onCapture)
     }
 }
 

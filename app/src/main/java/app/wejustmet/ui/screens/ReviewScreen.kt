@@ -34,6 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.wejustmet.R
 import app.wejustmet.core.ContactDraft
+import app.wejustmet.core.MessageTemplate
+import app.wejustmet.core.OwnerProfile
 import app.wejustmet.send.SendConfig
 import app.wejustmet.ui.PrimaryGreenButton
 import app.wejustmet.ui.Tokens
@@ -41,10 +43,17 @@ import app.wejustmet.ui.Tokens
 @Composable
 fun ReviewScreen(
     initial: ContactDraft,
+    owner: OwnerProfile,
+    sending: Boolean,
     onRetakeSelfie: () -> Unit,
-    onCompose: (ContactDraft) -> Unit,
+    onSend: (draft: ContactDraft, message: String) -> Unit,
 ) {
     var draft by remember { mutableStateOf(initial) }
+    var messageEdited by remember { mutableStateOf(false) }
+    var message by remember { mutableStateOf("") }
+    // Template tracks live field edits until the user touches the message itself.
+    val templated = MessageTemplate.compose(draft, owner.name, owner.linkedinUrl)
+    val shownMessage = if (messageEdited) message else templated
     val context = LocalContext.current
     val selfie = remember {
         context.assets.open(SendConfig.TEST_IMAGE_ASSET).use {
@@ -87,11 +96,29 @@ fun ReviewScreen(
         ReviewField(stringResource(R.string.field_role), draft.role) { draft = draft.copy(role = it) }
         ReviewField(stringResource(R.string.field_note), draft.note) { draft = draft.copy(note = it) }
 
+        OutlinedTextField(
+            value = shownMessage,
+            onValueChange = {
+                messageEdited = true
+                message = it
+            },
+            label = { Text(stringResource(R.string.field_message)) },
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Tokens.BrandPrimary,
+                unfocusedBorderColor = Tokens.BorderControl,
+                focusedLabelColor = Tokens.BrandPrimary,
+                unfocusedContainerColor = Tokens.SurfaceInput,
+                focusedContainerColor = Tokens.SurfaceCard,
+            ),
+        )
+
         Spacer(Modifier.height(8.dp))
         PrimaryGreenButton(
-            label = stringResource(R.string.cta_compose_message),
+            label = stringResource(R.string.cta_send_whatsapp),
             enabled = draft.readyToCompose,
-            onClick = { onCompose(draft) },
+            loading = sending,
+            onClick = { onSend(draft, shownMessage) },
         )
     }
 }
