@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Just Met, Submission</title>
+<style>
+  :root {
+    --bg:#FAFAF7; --surface:#FFFFFF; --elevated:#F7F7F4;
+    --brand-green:#0B3D2E; --brand-primary:#12573F; --brand-hover:#166B4E;
+    --gold:#D4AF37; --gold-text:#8A6A00;
+    --text:#0A0A0A; --text-sec:rgba(0,0,0,.75); --dim:rgba(0,0,0,.60);
+    --radius:24px; --shadow:0 8px 28px rgba(11,61,46,.08);
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family:-apple-system,'SF Pro Display',Inter,sans-serif; line-height:1.55; }
+  .page { max-width:900px; margin:0 auto; padding:48px 24px 80px; }
+
+  .hero { text-align:center; margin-bottom:40px; }
+  .hero .orbs { display:flex; justify-content:center; gap:0; margin-bottom:16px; }
+  .hero .orbs span { width:44px; height:44px; border-radius:50%; display:inline-block; }
+  .hero .orbs .g { background:var(--gold); margin-right:-8px; }
+  .hero .orbs .c { background:var(--brand-primary); }
+  h1 { font-size:44px; color:var(--brand-green); margin:0 0 8px; font-weight:800; }
+  .tagline { font-size:18px; color:var(--text-sec); max-width:640px; margin:0 auto; }
+  .event { margin-top:10px; font-size:13px; color:var(--gold-text); font-weight:600;
+           letter-spacing:.06em; text-transform:uppercase; }
+
+  h2 { color:var(--brand-green); font-size:22px; margin:40px 0 14px; }
+  p  { color:var(--text-sec); margin:10px 0; }
+
+  .card { background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+          padding:24px 28px; margin:16px 0; }
+
+  table { width:100%; border-collapse:collapse; }
+  td, th { text-align:left; padding:10px 12px; font-size:15px; }
+  th { color:var(--dim); font-weight:600; width:200px; }
+  tr + tr td, tr + tr th { border-top:1px solid var(--elevated); }
+  td a { color:var(--brand-primary); font-weight:600; text-decoration:none; }
+  td a:hover { text-decoration:underline; }
+  code { background:var(--elevated); border-radius:6px; padding:2px 7px; font-size:13.5px; }
+
+  ol.flow { counter-reset:step; list-style:none; padding:0; margin:0; }
+  ol.flow li { position:relative; padding:12px 0 12px 56px; }
+  ol.flow li + li { border-top:1px solid var(--elevated); }
+  ol.flow li::before { counter-increment:step; content:counter(step);
+    position:absolute; left:0; top:12px; width:36px; height:36px; border-radius:50%;
+    background:linear-gradient(180deg, var(--brand-hover), var(--brand-primary), var(--brand-green));
+    color:#fff; font-weight:700; display:flex; align-items:center; justify-content:center; }
+
+  .partners { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; }
+  .partner { background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px 22px; }
+  .partner h3 { margin:0 0 8px; color:var(--brand-primary); font-size:17px; }
+  .partner p { font-size:14px; margin:0; }
+
+  ul.edges { padding-left:20px; }
+  ul.edges li { color:var(--text-sec); margin:8px 0; font-size:15px; }
+
+  .chip { display:inline-block; border-radius:999px; padding:4px 14px; font-size:12.5px; font-weight:700;
+          background:linear-gradient(180deg,#E3C14F,var(--gold)); color:var(--brand-green); }
+  .footer { margin-top:48px; text-align:center; color:var(--dim); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hero">
+    <div class="orbs"><span class="g"></span><span class="c"></span></div>
+    <h1>We Just Met</h1>
+    <p class="tagline">Contact capture where the other person needs nothing. They speak, you selfie,
+    and thirty seconds later their contact is saved, enriched with their LinkedIn, and a composed
+    WhatsApp message with the selfie sits in their chat, one tap from send. They installed nothing,
+    scanned nothing, signed up for nothing.</p>
+    <div class="event">Collabute x TheBlock Hackathon &middot; Dubai &middot; 2026-08-30</div>
+  </div>
+
+  <h2>Try it</h2>
+  <div class="card">
+    <table>
+      <tr><th>Android APK</th><td><code>wejustmet-0.1.0.apk</code> (project folder), package <code>app.wejustmet</code>, Android 10+</td></tr>
+      <tr><th>Live dashboard</th><td><a href="https://wejustmet.vercel.app" target="_blank" rel="noreferrer">wejustmet.vercel.app</a> <span class="chip">live now</span></td></tr>
+      <tr><th>Backend</th><td>Convex cloud, deployment <code>bright-meadowlark-411</code></td></tr>
+      <tr><th>Source</th><td><code>app/</code> repo: Android app + <code>web/</code> dashboard and Convex functions; the git history is the build log</td></tr>
+    </table>
+    <p style="font-size:14px; color:var(--dim); margin-top:14px;">Sideload the APK, open "Just Met",
+    fill the one-time "This is you." card, and you are on the listening orb. WhatsApp must be installed.</p>
+  </div>
+
+  <h2>The 30-second flow</h2>
+  <div class="card">
+    <ol class="flow">
+      <li>The orb listens (gold ring while it hears you). The person you met says their name, number, company, and what you talked about.</li>
+      <li>Tap the orb or pause: "Ready for selfie, 3-2-1-GO". The camera opens while extraction runs in parallel on Convex.</li>
+      <li>The Review card arrives pre-filled, every field editable, message auto-composed from your saved profile (name, about, LinkedIn, Instagram).</li>
+      <li>"Send on WhatsApp" lands directly inside their chat via the <code>jid</code> intent extra (verified on device): selfie + message staged, one tap on WhatsApp's own send arrow.</li>
+      <li>Contact and selfie land in Convex; Context.dev finds their LinkedIn profile and role; the dashboard updates live with a gold "Connect on LinkedIn" chip and a 48h follow-up countdown.</li>
+    </ol>
+  </div>
+
+  <h2>The wedge</h2>
+  <div class="card">
+    <p>Every rival (HiHello, Blinq, Popl, Mobilo) needs both people in the system. This needs one.
+    Capture wins you the right to win follow-up, and follow-up is where the category dies.
+    The selfie plus "the thing we said we would do" is what restarts the relationship three weeks later.</p>
+  </div>
+
+  <h2>Partner stack, all three load-bearing</h2>
+  <div class="partners">
+    <div class="partner">
+      <h3>Devin (Cognition)</h3>
+      <p>Built the entire product in one day of CLI sessions. Every commit in the repo is Devin's:
+      Android app, Convex backend, dashboard, deploys, on-device verification.</p>
+    </div>
+    <div class="partner">
+      <h3>Convex</h3>
+      <p>Contacts DB, selfie file storage, live dashboard subscription, server-side extraction action,
+      enrichment pipeline state. Project provisioned via the Management API from a team token.</p>
+    </div>
+    <div class="partner">
+      <h3>Context.dev</h3>
+      <p>The enrichment layer. After every save, a Convex action finds the person (name + company):
+      People Enrichment API first, Web Search fallback. Proven live: "Sundar Pichai / Google" resolved
+      to CEO plus the real LinkedIn profile URL.</p>
+    </div>
+  </div>
+
+  <h2>Architecture</h2>
+  <div class="card">
+    <table>
+      <tr><th>App</th><td>Android, Jetpack Compose, Material 3, single module, Rivora light theme tokens</td></tr>
+      <tr><th>Ears</th><td>On-device platform <code>SpeechRecognizer</code>, live partial transcript under the orb</td></tr>
+      <tr><th>Brain</th><td>Convex action: spoken digit words to E.164 (+971 default), name/role/company/note extraction; the editable Review card is the human net</td></tr>
+      <tr><th>Send</th><td><code>ACTION_SEND</code> + <code>EXTRA_STREAM</code> (FileProvider) + <code>jid</code> extra, straight into the WhatsApp chat; share sheet is the graceful fallback for bad numbers</td></tr>
+      <tr><th>Dashboard</th><td>Vite + React on Vercel, live everywhere via the Convex websocket</td></tr>
+    </table>
+  </div>
+
+  <h2>Honest edges</h2>
+  <div class="card">
+    <ul class="edges">
+      <li>LinkedIn connect is one human click on the enriched profile. Deliberate: no ToS-breaking automation, and no public invite API exists.</li>
+      <li>The release APK is debug-key signed for sideload distribution; a real keystore goes in before any store upload.</li>
+      <li>The 48h follow-up nudge renders as a live countdown chip; the scheduled send function is the first post-hackathon task.</li>
+    </ul>
+  </div>
+
+  <div class="footer">We Just Met &middot; built with Devin, Convex and Context.dev &middot; wejustmet.vercel.app</div>
+</div>
+</body>
+</html>
