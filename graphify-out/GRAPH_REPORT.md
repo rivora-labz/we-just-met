@@ -1,11 +1,11 @@
 # Graph Report - /Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app  (2026-08-30)
 
 ## Corpus Check
-- 19 files · ~10,148 words
+- 21 files · ~11,927 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 33 nodes · 18 edges · 15 communities detected
+- 38 nodes · 24 edges · 17 communities detected
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -25,12 +25,17 @@
 - [[_COMMUNITY_Community 12|Community 12]]
 - [[_COMMUNITY_Community 13|Community 13]]
 - [[_COMMUNITY_Community 14|Community 14]]
+- [[_COMMUNITY_Community 15|Community 15]]
+- [[_COMMUNITY_Community 16|Community 16]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `WhatsAppSender` - 4 edges
-2. `MainActivity` - 2 edges
-3. `SendConfig` - 2 edges
-4. `Tokens` - 1 edges
+2. `callContextDev()` - 3 edges
+3. `MainActivity` - 2 edges
+4. `SendConfig` - 2 edges
+5. `enrichViaPeopleApi()` - 2 edges
+6. `enrichViaSearch()` - 2 edges
+7. `Tokens` - 1 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -50,20 +55,20 @@ Cohesion: 0.5
 Nodes (0): 
 
 ### Community 3 - "Community 3"
+Cohesion: 0.83
+Nodes (3): callContextDev(), enrichViaPeopleApi(), enrichViaSearch()
+
+### Community 4 - "Community 4"
 Cohesion: 0.5
 Nodes (0): 
 
-### Community 4 - "Community 4"
+### Community 5 - "Community 5"
 Cohesion: 0.67
 Nodes (1): SendConfig
 
-### Community 5 - "Community 5"
-Cohesion: 1.0
-Nodes (1): Tokens
-
 ### Community 6 - "Community 6"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Tokens
 
 ### Community 7 - "Community 7"
 Cohesion: 1.0
@@ -97,28 +102,38 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 15 - "Community 15"
+Cohesion: 1.0
+Nodes (0): 
+
+### Community 16 - "Community 16"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
 - **1 isolated node(s):** `Tokens`
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 5`** (2 nodes): `Tokens`, `Theme.kt`
+- **Thin community `Community 6`** (2 nodes): `Tokens`, `Theme.kt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 6`** (2 nodes): `dataModel.d.ts`, `schema.ts`
+- **Thin community `Community 7`** (2 nodes): `dataModel.d.ts`, `schema.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 7`** (1 nodes): `settings.gradle.kts`
+- **Thin community `Community 8`** (1 nodes): `settings.gradle.kts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 8`** (1 nodes): `build.gradle.kts`
+- **Thin community `Community 9`** (1 nodes): `build.gradle.kts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 9`** (1 nodes): `vite.config.ts`
+- **Thin community `Community 10`** (1 nodes): `vite.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 10`** (1 nodes): `server.d.ts`
+- **Thin community `Community 11`** (1 nodes): `env.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 11`** (1 nodes): `server.js`
+- **Thin community `Community 12`** (1 nodes): `server.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 12`** (1 nodes): `api.js`
+- **Thin community `Community 13`** (1 nodes): `server.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 13`** (1 nodes): `main.tsx`
+- **Thin community `Community 14`** (1 nodes): `api.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 14`** (1 nodes): `vite-env.d.ts`
+- **Thin community `Community 15`** (1 nodes): `main.tsx`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 16`** (1 nodes): `vite-env.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
