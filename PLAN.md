@@ -8,17 +8,39 @@ Single source of truth for Devin sessions. Deviations require a note here first.
 |---|---|---|
 | App | Android, Jetpack Compose, Material 3, single Activity, single Gradle module | Fastest agent-buildable path; multi-module setup risk cut |
 | Core | `core/` pure Kotlin package (zero Android imports): models, templating, state machines | KMP-ready story preserved without Gradle overhead |
-| STT | `SpeechRecognizer` (platform) | Free, on every phone, zero setup |
+| STT | `SpeechRecognizer` (platform, on-device). LOCKED per hard cut 2. Dumb ears + smart brain + human net: rough transcript is fine, cloud extraction normalizes, editable Review card catches the rest | Free, zero keys, live partials for the orb, no upload latency |
 | Extraction | Convex **action** -> cloud LLM -> fixed JSON schema | Key server-side; Convex load-bearing |
 | Backend | Convex: `contacts` table, file storage (selfies), enrichment action (Context.dev), scheduled follow-up function | Mandatory partner, powers dashboard + follow-up |
 | Enrichment | Context.dev web API from Convex action: name + company -> role, company info, LinkedIn public URL | Mandatory partner |
 | Send | `ACTION_SEND` + `EXTRA_STREAM` + `jid` extra -> WhatsApp with image. `jid` is undocumented: step 1 tests it on the real phone; fallback A = ContactsContract insert first, fallback B = share sheet with one recipient tap (script absorbs it) | No infra, real image in thread |
 | Dashboard | Vite + React + Convex client, one page | Live demo surface for judges |
-| Camera | System camera via `ActivityResultContracts.TakePicture` + FileProvider (same plumbing as send seam); CameraX only as step-7 polish | Retake free, ~20 lines |
+| Camera | CameraX front-lens embedded preview with countdown auto-shutter (selfie fires itself after capture ends); fallback = `TakePicture` + manual shutter if CameraX drags | Countdown flow needs in-app camera |
 
-## Design language
+## Design language (final: Rivora Labz light theme, ported from Snook-A-Look `SnookColors.light()`)
 
-Dark theme only. Near-black surface (#0E0F12), one accent (electric teal #2DD4BF), white text, large rounded cards (24dp), generous whitespace. Orb = pulsing accent circle, scale + alpha animation while listening. No light mode, no settings screen.
+Light theme only. No dark mode, no settings screen. All values below are the single source of truth, defined once in `core/Theme` tokens, never inline.
+
+| Token | Value | Use |
+|---|---|---|
+| bgPrimary | #FAFAF7 | cream app background |
+| surfaceCard | #FFFFFF | cards |
+| surfaceElevated / surfaceInput | #F7F7F4 / #F4F4F0 | sheets, text fields |
+| brandGreen / brandPrimary | #0B3D2E / #12573F | forest green brand family |
+| brandPrimaryHover / brandGreenHover | #166B4E / #145A44 | gradient tops, pressed |
+| accentGold | #D4AF37 (as text: #8A6A00 for 4.85:1 on cream) | enrichment badge, countdown chip, sparingly |
+| textPrimary / textSecondary / textMuted | #0A0A0A / 75% black / 60% black | WCAG-checked on cream |
+| borderControl | #8F8F8F (1dp) | disabled CTA outline, input borders |
+| statusSuccess / statusError | #27AE60 / #C0392B | |
+
+**Buttons (ported from Snook `PrimaryGreenButton` + `pressScale`):**
+- Primary CTA: 52dp tall, 12dp rounded rect, vertical gradient brandPrimaryHover -> brandPrimary -> brandGreen, white text 16sp, fills width.
+- Press interaction: `pressScale` modifier via `graphicsLayer` (GPU, no layout invalidation), pressed scale 0.952, spring release (DampingRatioMediumBouncy, StiffnessMediumLow), 220ms fire delay before onClick, double-fire guard.
+- Loading state: 24dp spinner in place of label. Disabled: flat surfaceCard fill + 1dp borderControl outline (never looks dead on cream).
+- Secondary button: white fill, 1dp borderControl, brandPrimary text, same shape + pressScale.
+
+**Orb:** forest green (brandPrimary) pulsing circle on cream, gold ring appears while actively hearing speech, scale + alpha animation. Countdown overlay and Lottie success burst use green + gold on cream.
+
+Cards: white, 24dp radius, soft shadow (no hard borders). Generous whitespace, 4/8dp spacing rhythm.
 
 ## Screens (5 app + 1 web)
 
@@ -38,19 +60,27 @@ Dark theme only. Near-black surface (#0E0F12), one accent (electric teal #2DD4BF
 - Fullscreen orb center, pulsing while listening.
 - Live partial transcript below orb, dimmed.
 - Prompt line above orb: "Hi! Say your name, number, company and what we talked about."
-- Auto-stop on silence OR tap orb to stop -> extraction spinner in-place -> navigate Review.
-- Mic permission requested here, not at app start.
+- Auto-stop on silence OR tap orb to stop -> orb collapses into "Ready for selfie, 3, 2, 1, go" countdown overlay.
+- Extraction fires in parallel the moment capture stops (countdown hides the LLM latency).
+- At zero: CameraX front camera auto-captures the selfie -> navigate Review with card + selfie both pre-filled.
+- Mic + camera permissions requested here, not at app start.
 
-### 3. Review + Selfie
+### 3. Review (card + selfie arrive pre-filled)
 - Contact card: name, phone, company, role, "what we talked about" note. Each field tappable-editable (plain TextField inline).
-- Selfie slot at top of card: empty state = dashed circle "Add selfie" -> CameraX fullscreen capture, front camera, single shutter, confirm/retake -> thumb fills slot.
+- Selfie thumb at top of card, already captured by the countdown. Tap thumb -> retake (countdown again). If extraction is still in flight, fields show shimmer and fill in when it lands.
 - Bottom CTA "Compose message" disabled until name + phone present.
 
 ### 4. Send
 - WhatsApp-style message preview bubble: selfie image + templated text (their name, my name, my LinkedIn URL, the talked-about note, "great meeting you").
 - Text editable in place.
 - CTA "Send on WhatsApp" -> fires intent with image + jid from captured phone number.
-- On return: save contact to Convex (mutation + selfie upload), fire enrichment action async, save to device contacts (ContactsContract), navigate Home. Toast "Saved. Follow-up scheduled."
+- On return: save contact to Convex (mutation + selfie upload), fire enrichment action async, save to device contacts (ContactsContract), then full-screen success moment (screen 4b).
+
+### 4b. Success moment (replaces toast)
+- Full-screen Lottie burst (bundled JSON asset, `lottie-compose`), accent-colored on the dark surface.
+- Headline: one of a rotating quote list defined once in `core` config (never inline literals), e.g. "Now they can't forget you.", "See you on the other side.", "The follow-up is already working."
+- Sub-line: "Saved. Nudge in 48h."
+- Auto-dismisses to Home after ~2.5s, or tap anywhere to skip.
 
 ### 5. Web dashboard (judge-facing)
 - One page: table/cards of contacts, live via Convex subscription.
@@ -83,8 +113,10 @@ Extraction JSON schema (LLM output, fixed): `{ name, phone, company, role, note 
 3. Context.dev enrichment action, tested from a dashboard "re-enrich" button with hardcoded name/company, decoupled from phone flow. (Partner-depth demoable even if later steps slip.)
 4. Screens 0-4 with hardcoded data, navigation, theme, saving to Convex for real.
 5. STT -> Convex extraction action -> Review populated for real. Extraction normalizes digits server-side (default country code from config, not a literal).
-6. Selfie via TakePicture into slot + scheduled follow-up function + wiring.
+6. Countdown selfie: CameraX front-lens auto-capture wired to end of capture + scheduled follow-up function + wiring.
 7. ContactsContract save (unless already required by jid fallback), polish, rehearse the 60s demo 5x.
+
+Stretch (only if all 7 green before 15:30, per hard cut 1): Context.dev browser action finds their LinkedIn profile and sends the connect request from the dashboard.
 
 ## Cut lines (if behind at 15:30, drop in this order)
 
