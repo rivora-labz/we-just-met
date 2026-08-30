@@ -16,6 +16,16 @@ Single source of truth for Devin sessions. Deviations require a note here first.
 | Dashboard | Vite + React + Convex client, one page | Live demo surface for judges |
 | Camera | CameraX front-lens embedded preview with countdown auto-shutter (selfie fires itself after capture ends); fallback = `TakePicture` + manual shutter if CameraX drags | Countdown flow needs in-app camera |
 
+## Naming (final)
+
+| Surface | Name |
+|---|---|
+| Android launcher label | **Just Met** (short, fits under the icon without ellipsis) |
+| Web dashboard, README, pitch, everything else | **We Just Met** |
+| Android `applicationId` | `app.wejustmet` |
+
+Both names defined once: launcher label in `strings.xml` (`app_name`), product name in `core` config for templates/dashboard. Never inline.
+
 ## Design language (final: Rivora Labz light theme, ported from Snook-A-Look `SnookColors.light()`)
 
 Light theme only. No dark mode, no settings screen. All values below are the single source of truth, defined once in `core/Theme` tokens, never inline.
