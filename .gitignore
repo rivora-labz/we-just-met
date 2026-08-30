@@ -13,3 +13,4 @@ dist/
 captures/
 *.apk
 *.aab
+.vercel/
