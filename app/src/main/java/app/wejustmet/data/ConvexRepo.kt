@@ -19,6 +19,7 @@ import kotlinx.serialization.json.jsonPrimitive
 private const val FN_CONTACTS_LIST = "contacts:list"
 private const val FN_CONTACTS_SAVE = "contacts:save"
 private const val FN_GENERATE_UPLOAD_URL = "contacts:generateUploadUrl"
+private const val FN_EXTRACT = "extract:run"
 private const val UPLOAD_RESPONSE_STORAGE_ID = "storageId"
 private const val SELFIE_MIME = "image/png"
 
@@ -37,10 +38,31 @@ data class ContactRow(
     val followUpAt: Double,
 )
 
+@Serializable
+data class ExtractedDraft(
+    val name: String = "",
+    val phone: String = "",
+    val company: String = "",
+    val role: String = "",
+    val note: String = "",
+)
+
 class ConvexRepo(private val client: ConvexClient = ConvexClient(BuildConfig.CONVEX_URL)) {
 
     fun contacts(): Flow<List<ContactRow>> =
         client.subscribe<List<ContactRow>>(FN_CONTACTS_LIST).map { it.getOrDefault(emptyList()) }
+
+    /** Server-side transcript -> structured card (extract:run action). */
+    suspend fun extract(transcript: String): ContactDraft {
+        val result = client.action<ExtractedDraft>(FN_EXTRACT, mapOf("transcript" to transcript))
+        return ContactDraft(
+            name = result.name,
+            phone = result.phone,
+            company = result.company,
+            role = result.role,
+            note = result.note,
+        )
+    }
 
     /** Uploads the selfie (when present) then saves the contact. Returns the new row id. */
     suspend fun saveContact(draft: ContactDraft, selfie: File?): String {

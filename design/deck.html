@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Just Met, Pitch Deck</title>
+<style>
+  :root {
+    --bg:#FAFAF7; --surface:#FFFFFF;
+    --brand-green:#0B3D2E; --brand-primary:#12573F; --brand-hover:#166B4E;
+    --gold:#D4AF37; --gold-text:#8A6A00;
+    --text:#0A0A0A; --text-sec:rgba(0,0,0,.75); --dim:rgba(0,0,0,.60);
+    --grad:linear-gradient(180deg, var(--brand-hover), var(--brand-primary), var(--brand-green));
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { height:100%; }
+  body {
+    background:var(--bg); color:var(--text); overflow:hidden;
+    font-family:-apple-system,'SF Pro Display','Segoe UI',Inter,sans-serif;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- stage that scales ---------- */
+  #stage {
+    width:1280px; height:720px; position:relative;
+    transform-origin:center center; flex:0 0 auto;
+  }
+
+  .slide {
+    position:absolute; inset:0; padding:64px 84px;
+    display:none; flex-direction:column;
+    background:var(--bg);
+  }
+  .slide.active { display:flex; animation:slidein .45s ease; }
+  @keyframes slidein { from { opacity:0; transform:translateX(28px); } to { opacity:1; transform:none; } }
+
+  /* ---------- typography ---------- */
+  .kicker { font-size:15px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-text); margin-bottom:14px; }
+  h1 { font-size:72px; font-weight:800; letter-spacing:-.02em; line-height:1.05; }
+  h2 { font-size:44px; font-weight:800; letter-spacing:-.015em; line-height:1.12; margin-bottom:10px; }
+  .sub { font-size:22px; color:var(--text-sec); line-height:1.45; }
+  .green { color:var(--brand-primary); }
+  .goldt { color:var(--gold-text); }
+
+  /* ---------- cards / pills ---------- */
+  .card {
+    background:var(--surface); border-radius:24px;
+    box-shadow:0 8px 30px rgba(11,61,46,.10), 0 2px 8px rgba(0,0,0,.05);
+    padding:28px 30px;
+  }
+  .pill {
+    display:inline-flex; align-items:center; gap:8px;
+    border-radius:12px; padding:8px 16px; font-size:15px; font-weight:600;
+  }
+  .pill.green { background:var(--grad); color:#fff; }
+  .pill.gold { background:rgba(212,175,55,.16); color:var(--gold-text); }
+  .pill.outline { background:var(--surface); border:1px solid #8F8F8F; color:var(--brand-primary); }
+
+  .row { display:flex; gap:24px; }
+  .col { flex:1; display:flex; flex-direction:column; }
+  .grow { flex:1; }
+  .center { align-items:center; justify-content:center; text-align:center; }
+
+  /* ---------- orb (from orb-preview.html) ---------- */
+  .orb-stage { position:relative; width:300px; height:300px; display:flex; align-items:center; justify-content:center; }
+  .orb {
+    width:190px; height:190px; border-radius:50%;
+    background:radial-gradient(circle at 32% 28%, var(--brand-hover) 0%, var(--brand-primary) 45%, var(--brand-green) 100%);
+    box-shadow:0 10px 40px rgba(11,61,46,.35), inset 0 -8px 22px rgba(0,0,0,.25);
+    animation:breathe 2.6s ease-in-out infinite; z-index:3;
+  }
+  @keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.06); } }
+  .halo { position:absolute; border-radius:50%; border:2px solid rgba(18,87,63,.35); width:190px; height:190px; animation:halo 2.6s ease-out infinite; z-index:1; }
+  .halo.h2 { animation-delay:1.3s; }
+  @keyframes halo { 0% { transform:scale(1); opacity:.7; } 100% { transform:scale(1.55); opacity:0; } }
+  .gold-ring {
+    position:absolute; width:226px; height:226px; border-radius:50%; z-index:2;
+    border:3px solid var(--gold);
+    box-shadow:0 0 24px rgba(212,175,55,.55), inset 0 0 14px rgba(212,175,55,.35);
+    animation:goldpulse 1.6s ease-in-out infinite;
+  }
+  @keyframes goldpulse { 0%,100% { box-shadow:0 0 18px rgba(212,175,55,.45); transform:scale(1);} 50% { box-shadow:0 0 34px rgba(212,175,55,.8); transform:scale(1.03);} }
+
+  /* ---------- chrome ---------- */
+  #counter {
+    position:absolute; bottom:26px; right:34px; z-index:20;
+    font-size:14px; font-weight:600; color:var(--dim);
+    background:var(--surface); border-radius:12px; padding:7px 14px;
+    box-shadow:0 2px 10px rgba(0,0,0,.08);
+  }
+  #hint { position:absolute; bottom:26px; left:34px; z-index:20; font-size:13px; color:var(--dim); }
+  #progress { position:absolute; top:0; left:0; height:4px; background:var(--grad); z-index:20; transition:width .3s ease; border-radius:0 4px 4px 0; }
+
+  /* ---------- slide-specific ---------- */
+  .demo-steps { display:flex; flex-direction:column; gap:16px; margin-top:26px; }
+  .step { display:flex; align-items:center; gap:20px; background:var(--surface); border-radius:24px; padding:18px 24px; box-shadow:0 4px 18px rgba(11,61,46,.08); }
+  .step .n {
+    flex:0 0 44px; width:44px; height:44px; border-radius:50%;
+    background:var(--grad); color:#fff; font-weight:800; font-size:19px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step .t { font-size:20px; line-height:1.35; color:var(--text); }
+  .step .t b { color:var(--brand-primary); }
+
+  .partner-h { font-size:22px; font-weight:800; letter-spacing:.06em; margin-bottom:4px; color:var(--brand-green); }
+  .partner-s { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--gold-text); margin-bottom:14px; }
+  .partner-b { font-size:16.5px; line-height:1.5; color:var(--text-sec); }
+  .partner-b li { margin:0 0 8px 18px; }
+
+  .rival { display:flex; align-items:center; gap:14px; background:var(--surface); border-radius:24px; padding:16px 22px; box-shadow:0 4px 18px rgba(11,61,46,.07); font-size:19px; }
+  .rival .x { color:#C0392B; font-weight:800; font-size:22px; flex:0 0 auto; }
+
+  .verdict {
+    background:var(--grad); color:#fff; border-radius:24px; padding:30px 36px;
+    box-shadow:0 12px 40px rgba(11,61,46,.30);
+  }
+  .verdict .v { font-size:15px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:var(--gold); margin-bottom:8px; }
+  .verdict .b { font-size:26px; font-weight:800; line-height:1.3; }
+
+  .arch-flow { display:flex; align-items:stretch; gap:14px; margin-top:24px; }
+  .arch-flow .card { flex:1; text-align:center; padding:22px 16px; }
+  .arch-flow .arr { align-self:center; font-size:26px; color:var(--brand-primary); font-weight:800; }
+  .arch-flow .h { font-size:18px; font-weight:800; color:var(--brand-green); margin-bottom:6px; }
+  .arch-flow .d { font-size:14.5px; color:var(--text-sec); line-height:1.4; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="progress"></div>
+
+  <!-- 1. TITLE -->
+  <section class="slide active">
+    <div class="row grow" style="align-items:center;">
+      <div class="col" style="flex:1.3;">
+        <div class="kicker">Collabute x TheBlock hackathon, Dubai, 2026-08-30</div>
+        <h1>We Just Met</h1>
+        <p class="sub" style="font-size:27px; margin-top:22px; max-width:560px;">Contact capture where the other person <b class="green">needs nothing.</b></p>
+        <div style="display:flex; gap:12px; margin-top:34px;">
+          <span class="pill green">Devin</span>
+          <span class="pill green">Convex</span>
+          <span class="pill green">Context.dev</span>
+        </div>
+      </div>
+      <div class="col center" style="flex:1;">
+        <div class="orb-stage">
+          <div class="halo"></div>
+          <div class="halo h2"></div>
+          <div class="gold-ring"></div>
+          <div class="orb"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section class="slide">
+    <div class="kicker">The problem</div>
+    <h2>Business cards die.<br>QR exchange needs <span class="goldt">both</span> people in an app.</h2>
+    <div class="row" style="margin-top:30px;">
+      <div class="col" style="gap:14px;">
+        <div class="rival"><span class="x">&times;</span> <b>HiHello</b>&nbsp; needs both people in the system</div>
+        <div class="rival"><span class="x">&times;</span> <b>Blinq</b>&nbsp; needs both people in the system</div>
+        <div class="rival"><span class="x">&times;</span> <b>Popl</b>&nbsp; needs both people in the system</div>
+        <div class="rival"><span class="x">&times;</span> <b>Mobilo</b>&nbsp; needs both people in the system</div>
+      </div>
+      <div class="col center">
+        <div class="card center" style="display:flex; flex-direction:column; padding:44px 40px;">
+          <div style="font-size:26px; font-weight:800; line-height:1.35;">Capture wins you the right<br>to win follow-up.</div>
+          <div class="sub" style="margin-top:16px; font-size:21px;"><b class="goldt">Follow-up is where the category dies.</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE WEDGE -->
+  <section class="slide">
+    <div class="kicker">The wedge</div>
+    <h2>One-sided capture.</h2>
+    <p class="sub" style="max-width:920px; margin-top:6px;">You hold your phone. They speak name, number, company, topic. A selfie together. <b class="green">30 seconds later a composed WhatsApp message with the selfie is in their chat.</b></p>
+    <div class="row" style="margin-top:32px; gap:18px;">
+      <div class="card col center" style="padding:30px 20px;"><div style="font-size:22px; font-weight:800;" class="green">Installed nothing</div></div>
+      <div class="card col center" style="padding:30px 20px;"><div style="font-size:22px; font-weight:800;" class="green">Scanned nothing</div></div>
+      <div class="card col center" style="padding:30px 20px;"><div style="font-size:22px; font-weight:800;" class="green">Signed up for nothing</div></div>
+    </div>
+    <div class="card" style="margin-top:24px; background:var(--grad); color:#fff;">
+      <div style="font-size:22px; font-weight:700; line-height:1.4;">The selfie + "the thing we said we'd do" is what restarts the relationship weeks later.</div>
+    </div>
+  </section>
+
+  <!-- 4. DEMO FLOW -->
+  <section class="slide">
+    <div class="kicker">The 60-second demo</div>
+    <h2>Meet. Speak. Selfie. Sent.</h2>
+    <div class="demo-steps">
+      <div class="step"><div class="n">1</div><div class="t"><b>Orb listens</b>, live transcript as they speak</div></div>
+      <div class="step"><div class="n">2</div><div class="t"><b>"Ready for selfie, 3-2-1-GO"</b>, auto-selfie fires itself</div></div>
+      <div class="step"><div class="n">3</div><div class="t"><b>Pre-filled editable Review card</b>, human safety net</div></div>
+      <div class="step"><div class="n">4</div><div class="t"><b>One tap</b>, WhatsApp message with the photo lands in their thread</div></div>
+      <div class="step"><div class="n">5</div><div class="t"><b>Live web dashboard</b> row appears, enrichment fills role + LinkedIn URL in real time, <span class="pill gold" style="padding:4px 12px;">nudge in 48h</span> countdown chip</div></div>
+    </div>
+  </section>
+
+  <!-- 5. PARTNER STACK -->
+  <section class="slide">
+    <div class="kicker">Partner stack, all three load-bearing</div>
+    <h2>Built on the mandatory stack, for real.</h2>
+    <div class="row grow" style="margin-top:24px; gap:20px;">
+      <div class="card col">
+        <div class="partner-h">DEVIN</div>
+        <div class="partner-s">Cognition</div>
+        <ul class="partner-b">
+          <li>Entire app built by <b>Devin CLI sessions</b> driven from a committed build spec (PLAN.md)</li>
+          <li>Planning session + build session running <b>in parallel</b></li>
+        </ul>
+      </div>
+      <div class="card col">
+        <div class="partner-h">CONVEX</div>
+        <div class="partner-s">The follow-up engine</div>
+        <ul class="partner-b">
+          <li>Contacts table, selfie file storage, <b>live dashboard subscription</b></li>
+          <li>Extraction + enrichment actions, <b>scheduled 48h follow-up</b> function</li>
+          <li>Cloud prod deployment <b>bright-meadowlark-411</b>, provisioned via Management API</li>
+        </ul>
+      </div>
+      <div class="card col">
+        <div class="partner-h">CONTEXT.DEV</div>
+        <div class="partner-s">The enrichment layer</div>
+        <ul class="partner-b">
+          <li>Two-tier action: <b>People Enrichment API</b> first, <b>Web Search API</b> fallback targeting linkedin.com/in, role parsed from result title</li>
+          <li><b>Proven live:</b> name + company &rarr; role + real LinkedIn URL on the dashboard</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. ENGINEERING CALL -->
+  <section class="slide">
+    <div class="kicker">The hard engineering call that paid off</div>
+    <h2>Riskiest seam first.</h2>
+    <p class="sub" style="max-width:900px; margin-top:6px;">The undocumented WhatsApp <b class="green">jid</b> intent extra was tested on a <b>real device in the first 30 minutes</b>. Back-to-front build order: prove the send seam, then let everything upstream feed it.</p>
+    <div class="row grow center" style="margin-top:28px;">
+      <div class="verdict" style="max-width:820px;">
+        <div class="v">Verdict</div>
+        <div class="b">PASSES. Opens directly inside the target chat with image + text staged, one tap from send.</div>
+        <div style="margin-top:14px; font-size:17px; opacity:.85;">Fallbacks designed but not needed.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. ARCHITECTURE -->
+  <section class="slide">
+    <div class="kicker">Architecture</div>
+    <h2>Simple pieces, one clean seam each.</h2>
+    <div class="arch-flow">
+      <div class="card"><div class="h">Android Compose app</div><div class="d">Single module, core/ pure-Kotlin package, KMP-ready</div></div>
+      <div class="arr">&rarr;</div>
+      <div class="card"><div class="h">Convex cloud</div><div class="d">Contacts, storage, actions, scheduled functions</div></div>
+      <div class="arr">&rarr;</div>
+      <div class="card"><div class="h">Context.dev</div><div class="d">Enrichment: role + LinkedIn URL</div></div>
+      <div class="arr">&rarr;</div>
+      <div class="card"><div class="h">React dashboard</div><div class="d">Live judge-facing view</div></div>
+    </div>
+    <div class="kicker" style="margin-top:36px;">Speech stack</div>
+    <div class="row" style="gap:18px;">
+      <div class="card col center" style="padding:24px 18px;">
+        <div style="font-size:20px; font-weight:800;" class="green">Dumb ears</div>
+        <div class="sub" style="font-size:16px; margin-top:6px;">on-device SpeechRecognizer</div>
+      </div>
+      <div class="card col center" style="padding:24px 18px;">
+        <div style="font-size:20px; font-weight:800;" class="green">Smart brain</div>
+        <div class="sub" style="font-size:16px; margin-top:6px;">cloud LLM extraction to fixed JSON</div>
+      </div>
+      <div class="card col center" style="padding:24px 18px;">
+        <div style="font-size:20px; font-weight:800;" class="green">Human net</div>
+        <div class="sub" style="font-size:16px; margin-top:6px;">editable Review card</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CLOSE -->
+  <section class="slide center" style="justify-content:center;">
+    <div class="orb-stage" style="width:200px; height:200px; margin-bottom:34px;">
+      <div class="halo" style="width:130px; height:130px;"></div>
+      <div class="gold-ring" style="width:156px; height:156px;"></div>
+      <div class="orb" style="width:130px; height:130px;"></div>
+    </div>
+    <h1 style="font-size:58px;">"Now they can't forget you."</h1>
+    <div class="kicker" style="margin-top:40px; margin-bottom:18px;">What's next</div>
+    <div style="display:flex; gap:14px;">
+      <span class="pill outline" style="font-size:17px; padding:12px 20px;">LinkedIn auto-connect via Context.dev browser actions</span>
+      <span class="pill outline" style="font-size:17px; padding:12px 20px;">iOS via KMP</span>
+      <span class="pill outline" style="font-size:17px; padding:12px 20px;">CRM export</span>
+    </div>
+  </section>
+
+  <div id="hint">&larr; &rarr; or click to advance</div>
+  <div id="counter">1 / 8</div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const TOTAL = slides.length;
+  let cur = 0;
+
+  function show(n) {
+    cur = Math.max(0, Math.min(TOTAL - 1, n));
+    slides.forEach((s, i) => s.classList.toggle('active', i === cur));
+    counter.textContent = (cur + 1) + ' / ' + TOTAL;
+    progress.style.width = (((cur + 1) / TOTAL) * 100) + '%';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') show(cur + 1);
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') show(cur - 1);
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(TOTAL - 1);
+  });
+  document.getElementById('stage').addEventListener('click', () => show(cur + 1));
+
+  // scale 1280x720 stage to window
+  const stage = document.getElementById('stage');
+  const STAGE_W = 1280, STAGE_H = 720, MARGIN = 24;
+  function fit() {
+    const s = Math.min((window.innerWidth - MARGIN) / STAGE_W, (window.innerHeight - MARGIN) / STAGE_H);
+    stage.style.transform = 'scale(' + s + ')';
+  }
+  window.addEventListener('resize', fit);
+  fit();
+  show(0);
+</script>
+</body>
+</html>

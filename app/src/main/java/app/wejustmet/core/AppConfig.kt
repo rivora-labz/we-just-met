@@ -28,6 +28,9 @@ object AppConfig {
     const val CAPTURE_PROMPT_TITLE = "Hi! I'm listening."
     const val CAPTURE_PROMPT_LINE = "Say your name, number, company and what we talked about."
     const val CAPTURE_HINT = "tap the orb to stop"
+    const val CAPTURE_HEARING_CAPTION = "HEARING YOU"
+    const val TRANSCRIPT_TAIL_WORDS = 18
+    const val EXTRACTION_TIMEOUT_MS = 6000L
     const val COUNTDOWN_READY_LINE = "Ready for selfie"
     const val COUNTDOWN_SUB_LINE = "extraction already running in the background"
     const val COUNTDOWN_BEAT_MS = 800L

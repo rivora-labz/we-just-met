@@ -130,6 +130,7 @@ private fun JustMetApp() {
             )
 
             Screen.Capture -> CaptureScreen(
+                extract = repo::extract,
                 onCaptured = { screen = Screen.Review(it) },
                 onMenu = { scope.launch { drawerState.open() } },
             )
