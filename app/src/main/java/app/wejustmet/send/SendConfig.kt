@@ -6,8 +6,8 @@ package app.wejustmet.send
  * on-phone A/B test (jid direct-to-thread vs plain share sheet).
  */
 object SendConfig {
-    /** Founder's business WhatsApp number (E.164) for the step-1 A/B test only. */
-    const val TEST_WHATSAPP_NUMBER = "+971551758694"
+    /** Founder-chosen target number (E.164) for the step-1 A/B test only. */
+    const val TEST_WHATSAPP_NUMBER = "+971585914562"
 
     const val WHATSAPP_PACKAGE = "com.whatsapp"
     const val WHATSAPP_BUSINESS_PACKAGE = "com.whatsapp.w4b"
