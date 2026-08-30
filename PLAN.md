@@ -12,7 +12,7 @@ Single source of truth for Devin sessions. Deviations require a note here first.
 | Extraction | Convex **action** -> cloud LLM -> fixed JSON schema | Key server-side; Convex load-bearing |
 | Backend | Convex: `contacts` table, file storage (selfies), enrichment action (Context.dev), scheduled follow-up function | Mandatory partner, powers dashboard + follow-up |
 | Enrichment | Context.dev web API from Convex action: name + company -> role, company info, LinkedIn public URL | Mandatory partner |
-| Send | `ACTION_SEND` + `EXTRA_STREAM` + `jid` extra -> WhatsApp with image. `jid` is undocumented: step 1 tests it on the real phone; fallback A = ContactsContract insert first, fallback B = share sheet with one recipient tap (script absorbs it) | No infra, real image in thread |
+| Send | `ACTION_SEND` + `EXTRA_STREAM` + `jid` extra -> WhatsApp with image. **VERDICT (step 1, 2026-08-30, Fold 4 real device): jid PASSES.** Opens directly inside the target chat, image + text staged, one tap on WhatsApp's send arrow. Fallback A (ContactsContract insert) NOT needed. Fallback B (share sheet, no jid) also works but is lengthy manual (pick app, pick recipient); keep only as emergency path. Sender resolves at runtime: `com.whatsapp` first, `com.whatsapp.w4b` fallback (both on test device) | No infra, real image in thread |
 | Dashboard | Vite + React + Convex client, one page | Live demo surface for judges |
 | Camera | CameraX front-lens embedded preview with countdown auto-shutter (selfie fires itself after capture ends); fallback = `TakePicture` + manual shutter if CameraX drags | Countdown flow needs in-app camera |
 
@@ -48,7 +48,7 @@ Light theme only. No dark mode, no settings screen. All values below are the sin
 - Loading state: 24dp spinner in place of label. Disabled: flat surfaceCard fill + 1dp borderControl outline (never looks dead on cream).
 - Secondary button: white fill, 1dp borderControl, brandPrimary text, same shape + pressScale.
 
-**Orb (FINAL, approved visual spec = `../orb-preview.html`, copy it into Compose 1:1):**
+**Orb (FINAL, approved visual spec = `design/orb-preview.html`, open it in a browser, copy it into Compose 1:1):**
 - 150dp circle, radial gradient (light at 32%/28% offset): brandPrimaryHover -> brandPrimary (45%) -> brandGreen. Soft drop shadow (brand green 35%), inner bottom shade.
 - Idle listening: breathe scale 1.0 -> 1.06, 2.6s ease-in-out infinite. Two expanding halo rings (2dp, brandPrimary 35% alpha, scale 1 -> 1.75 fading to 0, 2.6s, second delayed 1.3s).
 - Actively hearing speech: 178dp gold ring (3dp, accentGold) fades/scales in over 250ms, glow pulse 1.1s; orb breathe speeds up to 1.1s; "hearing you" caption in goldText; live partial transcript below (last ~18 words, textSecondary bold on dim italic).
