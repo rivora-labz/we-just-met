@@ -165,6 +165,30 @@
   .wa-meta { font-size:9px; color:rgba(0,0,0,.45); text-align:right; margin-top:3px; }
   .wa-meta .tick { color:#34B7F1; font-weight:800; }
 
+  /* ---------- dashboard mockup ---------- */
+  .dash { background:var(--surface); border-radius:24px; box-shadow:0 8px 30px rgba(11,61,46,.10); padding:24px 28px; width:100%; }
+  .dash-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:18px; }
+  .dash-title { font-size:26px; font-weight:800; color:var(--brand-primary); }
+  .dash-sub { font-size:13px; color:var(--dim); margin-top:2px; }
+  .stat { background:var(--bg); border-radius:16px; padding:10px 22px; text-align:left; }
+  .stat .v { font-size:26px; font-weight:800; color:var(--brand-primary); }
+  .stat .l { font-size:12px; color:var(--dim); }
+  .dash-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .dc { background:var(--bg); border-radius:16px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start; }
+  .dc.new { animation:rowin .8s ease both; animation-delay:1.2s; outline:2px solid rgba(212,175,55,.55); }
+  @keyframes rowin { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  .dc .ava { width:42px; height:42px; border-radius:50%; flex:none; background:linear-gradient(180deg,#166B4E,#0B3D2E); color:#fff; font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .dc .nm { font-size:15.5px; font-weight:800; }
+  .dc .rl { font-size:12px; color:var(--text-sec); margin-top:1px; }
+  .dc .nt { font-size:11.5px; color:var(--dim); font-style:italic; margin-top:1px; }
+  .dc .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .chip-s { font-size:10.5px; font-weight:700; border-radius:999px; padding:3px 10px; }
+  .chip-s.met { background:rgba(0,0,0,.06); color:var(--text-sec); }
+  .chip-s.nudge { background:rgba(212,175,55,.16); color:var(--gold-text); border:1px solid rgba(212,175,55,.5); }
+  .chip-s.ok { background:rgba(39,174,96,.14); color:#1E8449; }
+  .chip-s.pend { background:rgba(0,0,0,.05); color:var(--dim); }
+  .chip-s.link { background:var(--surface); border:1px solid #8F8F8F; color:var(--brand-primary); }
+
   /* ---------- reversed orb (future search agent) ---------- */
   .orb.rev, .mini-orb.rev {
     background:radial-gradient(circle at 32% 28%, #E9CE6B 0%, var(--gold) 45%, #8A6A00 100%);
@@ -343,6 +367,70 @@
         <div class="mini-label">4 &middot; In their WhatsApp</div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- 4c. DASHBOARD -->
+  <section class="slide">
+    <div class="kicker">The judge-facing surface</div>
+    <h2>Live dashboard: every capture lands here in real time.</h2>
+    <div class="row grow" style="margin-top:20px; align-items:center;">
+      <div class="dash">
+        <div class="dash-head">
+          <div>
+            <div class="dash-title">We Just Met</div>
+            <div class="dash-sub">People you met, enriched and queued for follow-up</div>
+          </div>
+          <div style="display:flex; gap:12px;">
+            <div class="stat"><div class="v">13</div><div class="l">met today</div></div>
+            <div class="stat"><div class="v">3</div><div class="l">enriched</div></div>
+          </div>
+        </div>
+        <div class="dash-grid">
+          <div class="dc">
+            <div class="ava">SC</div>
+            <div>
+              <div class="nm">Sarah Chen</div>
+              <div class="rl">Partnerships Lead, Falcon Ventures</div>
+              <div class="nt">the Dubai padel league</div>
+              <div class="chips">
+                <span class="chip-s met">met 53m ago</span>
+                <span class="chip-s nudge">nudge in 47h</span>
+                <span class="chip-s ok">enriched</span>
+                <span class="chip-s link">LinkedIn</span>
+              </div>
+            </div>
+          </div>
+          <div class="dc">
+            <div class="ava">SP</div>
+            <div>
+              <div class="nm">Sundar Pichai</div>
+              <div class="rl">CEO, Google</div>
+              <div class="nt">enrichment proof run</div>
+              <div class="chips">
+                <span class="chip-s met">met 17m ago</span>
+                <span class="chip-s nudge">nudge in 48h</span>
+                <span class="chip-s ok">enriched</span>
+                <span class="chip-s link">LinkedIn</span>
+              </div>
+            </div>
+          </div>
+          <div class="dc new">
+            <div class="ava">ND</div>
+            <div>
+              <div class="nm">Narayan Dhingra</div>
+              <div class="rl">Founder</div>
+              <div class="nt">just captured, live during this demo</div>
+              <div class="chips">
+                <span class="chip-s met">met 7s ago</span>
+                <span class="chip-s nudge">nudge in 48h</span>
+                <span class="chip-s pend">enriching&hellip;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:var(--dim); margin-top:14px;">Convex live subscription: no refresh, the row appears the moment the phone saves. Gold-outlined card just landed. Context.dev fills role + LinkedIn seconds later.</div>
+      </div>
     </div>
   </section>
 
