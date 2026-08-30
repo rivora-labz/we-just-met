@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Just Met</string>
+    <string name="send_seam_title">Send seam test</string>
+    <string name="send_seam_subtitle">A/B: WhatsApp jid extra vs plain share sheet</string>
+    <string name="target_number_label">Target: %1$s</string>
+    <string name="fallback_toggle_label">Fallback: no jid (plain share sheet)</string>
+    <string name="cta_send_jid">Send via WhatsApp (jid)</string>
+    <string name="cta_send_share_sheet">Send via share sheet (no jid)</string>
+    <string name="share_chooser_title">Share test image</string>
+    <string name="error_whatsapp_missing">WhatsApp is not installed on this device</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Two overlapping circles: the two people who just met. Gold on forest green. -->
+    <path
+        android:fillColor="#D4AF37"
+        android:pathData="M44,54m-16,0a16,16 0 1,1 32,0a16,16 0 1,1 -32,0" />
+    <path
+        android:fillColor="#FAFAF7"
+        android:fillAlpha="0.9"
+        android:pathData="M64,54m-16,0a16,16 0 1,1 32,0a16,16 0 1,1 -32,0" />
+</vector>
