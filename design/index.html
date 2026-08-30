@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>We Just Met, judge hub</title>
+<style>
+  :root{
+    --bg:#FAFAF7; --card:#FFFFFF; --green:#0B3D2E; --brand:#12573F;
+    --gold:#8A6A00; --text:#0A0A0A; --muted:rgba(0,0,0,.6);
+  }
+  *{margin:0;box-sizing:border-box}
+  body{font-family:-apple-system,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--text)}
+  nav{position:sticky;top:0;z-index:10;background:rgba(250,250,247,.92);backdrop-filter:blur(8px);
+      border-bottom:1px solid #e5e5e0;padding:14px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  nav b{color:var(--green);font-size:17px;margin-right:8px}
+  nav a{color:var(--brand);text-decoration:none;font-size:14px;font-weight:600}
+  nav a:hover{text-decoration:underline}
+  header{max-width:900px;margin:56px auto 8px;padding:0 24px}
+  header h1{color:var(--green);font-size:40px;letter-spacing:-.5px}
+  header p{margin-top:10px;font-size:17px;line-height:1.55;color:var(--muted);max-width:640px}
+  .chips{margin-top:14px;display:flex;gap:8px}
+  .chip{font-size:12px;font-weight:700;color:#fff;background:var(--brand);border-radius:99px;padding:5px 12px}
+  section{max-width:1100px;margin:48px auto;padding:0 24px}
+  section h2{color:var(--green);font-size:22px;margin-bottom:4px}
+  section .sub{font-size:14px;color:var(--muted);margin-bottom:14px}
+  .frame{background:var(--card);border-radius:20px;box-shadow:0 6px 30px rgba(11,61,46,.10);overflow:hidden}
+  iframe{display:block;width:100%;border:0}
+  .tall{height:88vh} .mid{height:72vh}
+  .open{font-size:13px;margin-top:8px}
+  .open a{color:var(--brand)}
+  footer{max-width:900px;margin:56px auto 40px;padding:0 24px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<nav>
+  <b>We Just Met</b>
+  <a href="#deck">Deck</a>
+  <a href="#orb">Live orb</a>
+  <a href="#flow">Flow</a>
+  <a href="#submission">Submission</a>
+  <a href="https://wejustmet.vercel.app" target="_blank" rel="noreferrer">Live dashboard &#8599;</a>
+  <a href="https://github.com/rivora-labz/we-just-met" target="_blank" rel="noreferrer">GitHub &#8599;</a>
+</nav>
+
+<header>
+  <h1>We Just Met</h1>
+  <p>Contact capture where the other person needs nothing. They speak, you selfie, and thirty
+     seconds later their contact is saved, enriched, and a composed WhatsApp message with the
+     selfie is in their chat. They installed nothing.</p>
+  <div class="chips"><span class="chip">Devin</span><span class="chip">Convex</span><span class="chip">Context.dev</span></div>
+</header>
+
+<section id="deck">
+  <h2>Pitch deck</h2>
+  <div class="sub">Click inside the deck or use arrow keys to advance.</div>
+  <div class="frame"><iframe class="tall" src="deck.html" title="Pitch deck"></iframe></div>
+  <div class="open"><a href="deck.html" target="_blank">Open fullscreen ↗</a></div>
+</section>
+
+<section id="orb">
+  <h2>Live capture orb</h2>
+  <div class="sub">The actual animation spec the app implements, running live.</div>
+  <div class="frame"><iframe class="mid" src="orb-preview.html" title="Orb preview"></iframe></div>
+  <div class="open"><a href="orb-preview.html" target="_blank">Open fullscreen ↗</a></div>
+</section>
+
+<section id="flow">
+  <h2>Product flow</h2>
+  <div class="sub">The 30-second demo flow plus build order.</div>
+  <div class="frame"><iframe class="tall" src="flow-diagram.html" title="Flow diagram"></iframe></div>
+  <div class="open"><a href="flow-diagram.html" target="_blank">Open fullscreen ↗</a></div>
+</section>
+
+<section id="submission">
+  <h2>Submission</h2>
+  <div class="sub">APK, live dashboard, backend, source.</div>
+  <div class="frame"><iframe class="tall" src="submission.html" title="Submission"></iframe></div>
+  <div class="open"><a href="submission.html" target="_blank">Open fullscreen ↗</a></div>
+</section>
+
+<footer>Collabute x TheBlock Hackathon, Dubai, 2026-08-30 · Narayan Dhingra · Rivora Labz</footer>
+</body>
+</html>
