@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
@@ -57,7 +59,9 @@ import app.wejustmet.R
 import app.wejustmet.core.AppConfig
 import app.wejustmet.core.ContactDraft
 import app.wejustmet.data.SpeechCapture
+import app.wejustmet.send.WhatsAppSender
 import app.wejustmet.ui.Tokens
+import java.io.File
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
@@ -86,7 +90,7 @@ private const val STOP_RESULT_GRACE_MS = 900L
 @Composable
 fun CaptureScreen(
     extract: suspend (String) -> ContactDraft,
-    onCaptured: (ContactDraft) -> Unit,
+    onCaptured: (draft: ContactDraft, selfie: File?) -> Unit,
     onMenu: () -> Unit,
 ) {
     val context = LocalContext.current
@@ -97,6 +101,16 @@ fun CaptureScreen(
     var hearing by remember { mutableStateOf(false) }
     var countingDown by remember { mutableStateOf(false) }
     var extraction by remember { mutableStateOf<Deferred<ContactDraft>?>(null) }
+    var pendingDraft by remember { mutableStateOf<ContactDraft?>(null) }
+
+    // PLAN camera fallback path: system camera writes into the FileProvider cache slot.
+    val takeSelfie = rememberLauncherForActivityResult(
+        ActivityResultContracts.TakePicture(),
+    ) { captured ->
+        val file = WhatsAppSender.selfieFile(context)
+        val draft = pendingDraft ?: ContactDraft(note = transcript.trim())
+        onCaptured(draft, file.takeIf { captured && it.length() > 0 })
+    }
     var micGranted by remember {
         mutableStateOf(
             ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) ==
@@ -184,11 +198,15 @@ fun CaptureScreen(
             }
             Spacer(Modifier.height(32.dp))
             Text(
-                text = transcriptTail(transcript),
+                text = transcript,
                 color = Tokens.TextMuted,
                 fontSize = 15.sp,
                 fontStyle = FontStyle.Italic,
                 textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .weight(1f, fill = false)
+                    .verticalScroll(rememberScrollState(), reverseScrolling = true)
+                    .padding(bottom = 72.dp),
             )
         }
 
@@ -207,17 +225,14 @@ fun CaptureScreen(
                         val draft = withTimeoutOrNull(AppConfig.EXTRACTION_TIMEOUT_MS) {
                             extraction?.await()
                         } ?: ContactDraft(note = transcript.trim())
-                        onCaptured(draft)
+                        pendingDraft = draft
+                        runCatching { takeSelfie.launch(WhatsAppSender.selfieUri(context)) }
+                            .onFailure { onCaptured(draft, null) }
                     }
                 },
             )
         }
     }
-}
-
-private fun transcriptTail(transcript: String): String {
-    val words = transcript.split(Regex("\\s+")).filter { it.isNotBlank() }
-    return words.takeLast(AppConfig.TRANSCRIPT_TAIL_WORDS).joinToString(" ")
 }
 
 @Composable

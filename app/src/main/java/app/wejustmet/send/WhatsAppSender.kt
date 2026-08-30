@@ -21,7 +21,7 @@ object WhatsAppSender {
         val target = installedWhatsAppPackage(context)
             ?: return context.getString(R.string.error_whatsapp_missing)
         val intent = Intent(Intent.ACTION_SEND).apply {
-            type = SendConfig.IMAGE_MIME
+            type = SendConfig.mimeFor(image.name)
             putExtra(Intent.EXTRA_STREAM, uri)
             putExtra(Intent.EXTRA_TEXT, message)
             clipData = ClipData.newRawUri(null, uri)
@@ -37,10 +37,16 @@ object WhatsAppSender {
         }
     }
 
-    /**
-     * Step-4 stand-in selfie: the bundled test image staged into the shared cache dir.
-     * Step 6 replaces this with the CameraX capture writing to the same directory.
-     */
+    /** Camera target inside the FileProvider-served cache dir. */
+    fun selfieFile(context: Context): File =
+        File(
+            File(context.cacheDir, SendConfig.SHARED_CACHE_DIR).apply { mkdirs() },
+            SendConfig.SELFIE_FILE_NAME,
+        )
+
+    fun selfieUri(context: Context): Uri = providerUri(context, selfieFile(context))
+
+    /** Fallback when no selfie was captured: the bundled placeholder staged into cache. */
     fun stagedDemoSelfie(context: Context): File {
         val dir = File(context.cacheDir, SendConfig.SHARED_CACHE_DIR).apply { mkdirs() }
         val file = File(dir, SendConfig.TEST_IMAGE_ASSET)

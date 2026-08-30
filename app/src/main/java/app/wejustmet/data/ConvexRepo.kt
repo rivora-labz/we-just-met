@@ -2,6 +2,7 @@ package app.wejustmet.data
 
 import app.wejustmet.BuildConfig
 import app.wejustmet.core.ContactDraft
+import app.wejustmet.send.SendConfig
 import dev.convex.android.ConvexClient
 import java.io.File
 import java.net.HttpURLConnection
@@ -21,7 +22,6 @@ private const val FN_CONTACTS_SAVE = "contacts:save"
 private const val FN_GENERATE_UPLOAD_URL = "contacts:generateUploadUrl"
 private const val FN_EXTRACT = "extract:run"
 private const val UPLOAD_RESPONSE_STORAGE_ID = "storageId"
-private const val SELFIE_MIME = "image/png"
 
 @Serializable
 data class ContactRow(
@@ -85,7 +85,7 @@ class ConvexRepo(private val client: ConvexClient = ConvexClient(BuildConfig.CON
             try {
                 connection.requestMethod = "POST"
                 connection.doOutput = true
-                connection.setRequestProperty("Content-Type", SELFIE_MIME)
+                connection.setRequestProperty("Content-Type", SendConfig.mimeFor(file.name))
                 connection.outputStream.use { out -> file.inputStream().use { it.copyTo(out) } }
                 val body = connection.inputStream.bufferedReader().readText()
                 Json.parseToJsonElement(body)

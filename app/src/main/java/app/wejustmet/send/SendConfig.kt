@@ -15,7 +15,12 @@ object SendConfig {
     const val WHATSAPP_JID_SUFFIX = "@s.whatsapp.net"
 
     const val TEST_IMAGE_ASSET = "just_met_test.png"
+    const val SELFIE_FILE_NAME = "just_met_selfie.jpg"
     const val IMAGE_MIME = "image/png"
+    const val IMAGE_MIME_JPEG = "image/jpeg"
+
+    fun mimeFor(fileName: String): String =
+        if (fileName.endsWith(".png")) IMAGE_MIME else IMAGE_MIME_JPEG
 
     /** Must match the cache-path entry in res/xml/file_paths.xml. */
     const val SHARED_CACHE_DIR = "shared"

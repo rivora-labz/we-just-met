@@ -84,6 +84,7 @@ private fun JustMetApp() {
     }
     var sending by remember { mutableStateOf(false) }
     var quoteIndex by remember { mutableIntStateOf(0) }
+    var capturedSelfie by remember { mutableStateOf<java.io.File?>(null) }
     val contacts by remember { repo.contacts() }.collectAsState(initial = null)
     val drawerState = rememberDrawerState(DrawerValue.Closed)
 
@@ -131,7 +132,10 @@ private fun JustMetApp() {
 
             Screen.Capture -> CaptureScreen(
                 extract = repo::extract,
-                onCaptured = { screen = Screen.Review(it) },
+                onCaptured = { draft, selfie ->
+                    capturedSelfie = selfie
+                    screen = Screen.Review(draft)
+                },
                 onMenu = { scope.launch { drawerState.open() } },
             )
 
@@ -143,12 +147,13 @@ private fun JustMetApp() {
             is Screen.Review -> ReviewScreen(
                 initial = current.draft,
                 owner = owner,
+                selfie = capturedSelfie,
                 sending = sending,
                 onRetakeSelfie = { screen = Screen.Capture },
                 onSend = { draft, message ->
                     if (sending) return@ReviewScreen
                     sending = true
-                    val selfie = WhatsAppSender.stagedDemoSelfie(context)
+                    val selfie = capturedSelfie ?: WhatsAppSender.stagedDemoSelfie(context)
                     val error = WhatsAppSender.send(context, draft.phone, message, selfie)
                     if (error != null) {
                         sending = false

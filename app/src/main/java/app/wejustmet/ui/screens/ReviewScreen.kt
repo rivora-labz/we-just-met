@@ -39,11 +39,13 @@ import app.wejustmet.core.OwnerProfile
 import app.wejustmet.send.SendConfig
 import app.wejustmet.ui.PrimaryGreenButton
 import app.wejustmet.ui.Tokens
+import java.io.File
 
 @Composable
 fun ReviewScreen(
     initial: ContactDraft,
     owner: OwnerProfile,
+    selfie: File?,
     sending: Boolean,
     onRetakeSelfie: () -> Unit,
     onSend: (draft: ContactDraft, message: String) -> Unit,
@@ -55,10 +57,10 @@ fun ReviewScreen(
     val templated = MessageTemplate.compose(draft, owner)
     val shownMessage = if (messageEdited) message else templated
     val context = LocalContext.current
-    val selfie = remember {
-        context.assets.open(SendConfig.TEST_IMAGE_ASSET).use {
-            BitmapFactory.decodeStream(it).asImageBitmap()
-        }
+    val selfieBitmap = remember(selfie) {
+        val captured = selfie?.takeIf { it.exists() }?.let { BitmapFactory.decodeFile(it.absolutePath) }
+        (captured ?: context.assets.open(SendConfig.TEST_IMAGE_ASSET).use(BitmapFactory::decodeStream))
+            .asImageBitmap()
     }
 
     Column(
@@ -76,7 +78,7 @@ fun ReviewScreen(
             fontWeight = FontWeight.Bold,
         )
         Image(
-            bitmap = selfie,
+            bitmap = selfieBitmap,
             contentDescription = stringResource(R.string.review_selfie_description),
             contentScale = ContentScale.Crop,
             modifier = Modifier
