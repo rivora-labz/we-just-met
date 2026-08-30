@@ -32,6 +32,14 @@ android {
         buildConfig = true
     }
 
+    buildTypes {
+        release {
+            // Hackathon distribution: debug-key signed so the APK installs anywhere.
+            // Replace with a real keystore before any store upload.
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
