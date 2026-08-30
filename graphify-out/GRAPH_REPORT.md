@@ -1,7 +1,7 @@
 # Graph Report - /Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app  (2026-08-30)
 
 ## Corpus Check
-- 33 files · ~17,776 words
+- 33 files · ~18,372 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
