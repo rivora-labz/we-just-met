@@ -1,11 +1,11 @@
 # Graph Report - /Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app  (2026-08-30)
 
 ## Corpus Check
-- 6 files · ~3,281 words
+- 6 files · ~5,557 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 16 nodes · 10 edges · 6 communities detected
+- 17 nodes · 11 edges · 6 communities detected
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -18,7 +18,7 @@
 - [[_COMMUNITY_Community 5|Community 5]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `WhatsAppSender` - 3 edges
+1. `WhatsAppSender` - 4 edges
 2. `MainActivity` - 2 edges
 3. `SendConfig` - 2 edges
 4. `Tokens` - 1 edges
@@ -33,7 +33,7 @@ Cohesion: 0.4
 Nodes (1): MainActivity
 
 ### Community 1 - "Community 1"
-Cohesion: 0.5
+Cohesion: 0.4
 Nodes (1): WhatsAppSender
 
 ### Community 2 - "Community 2"
