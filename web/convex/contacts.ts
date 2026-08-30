@@ -1,5 +1,6 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
+import { internal } from "./_generated/api";
 import { ENRICHMENT, FOLLOW_UP_DELAY_MS } from "./shared";
 
 /** Save a captured contact. Called by the phone right after the WhatsApp send. */
@@ -14,12 +15,14 @@ export const save = mutation({
   },
   handler: async (ctx, args) => {
     const metAt = Date.now();
-    return await ctx.db.insert("contacts", {
+    const contactId = await ctx.db.insert("contacts", {
       ...args,
       enrichment: ENRICHMENT.pending,
       metAt,
       followUpAt: metAt + FOLLOW_UP_DELAY_MS,
     });
+    await ctx.scheduler.runAfter(0, internal.enrich.run, { contactId });
+    return contactId;
   },
 });
 

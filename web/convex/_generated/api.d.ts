@@ -9,6 +9,7 @@
  */
 
 import type * as contacts from "../contacts.js";
+import type * as enrich from "../enrich.js";
 import type * as seed from "../seed.js";
 import type * as shared from "../shared.js";
 
@@ -20,6 +21,7 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   contacts: typeof contacts;
+  enrich: typeof enrich;
   seed: typeof seed;
   shared: typeof shared;
 }>;

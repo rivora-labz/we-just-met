@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { ENRICHMENT, PRODUCT_NAME } from "../convex/shared";
 
@@ -35,6 +35,7 @@ function startOfToday(now: number): number {
 
 export default function App() {
   const contacts = useQuery(api.contacts.list);
+  const reEnrich = useMutation(api.enrich.reEnrich);
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -77,7 +78,15 @@ export default function App() {
               <div className="avatar-fallback">{c.name.charAt(0)}</div>
             )}
             <div className="card-body">
-              <h2 className="card-name">{c.name}</h2>
+              <h2 className="card-name">
+                {c.linkedinUrl ? (
+                  <a className="card-link" href={c.linkedinUrl} target="_blank" rel="noreferrer">
+                    {c.name}
+                  </a>
+                ) : (
+                  c.name
+                )}
+              </h2>
               <p className="card-meta">
                 {[c.role, c.company].filter(Boolean).join(", ") || c.phone}
               </p>
@@ -88,6 +97,14 @@ export default function App() {
                 <span className={ENRICHMENT_CHIP[c.enrichment].className}>
                   {ENRICHMENT_CHIP[c.enrichment].label}
                 </span>
+                {c.enrichment !== ENRICHMENT.pending && (
+                  <button
+                    className="chip chip-action"
+                    onClick={() => reEnrich({ contactId: c._id })}
+                  >
+                    re-enrich
+                  </button>
+                )}
               </div>
             </div>
           </article>
