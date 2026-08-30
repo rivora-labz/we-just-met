@@ -189,6 +189,19 @@ body {
   color: var(--status-error);
 }
 
+.chip-linkedin {
+  background: linear-gradient(180deg, #e3c14f, var(--accent-gold));
+  color: var(--brand-green);
+  border: none;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chip-linkedin:hover {
+  filter: brightness(1.05);
+}
+
 .chip-action {
   background: var(--surface-card);
   color: var(--brand-primary);

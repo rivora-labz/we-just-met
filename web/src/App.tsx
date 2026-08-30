@@ -97,6 +97,16 @@ export default function App() {
                 <span className={ENRICHMENT_CHIP[c.enrichment].className}>
                   {ENRICHMENT_CHIP[c.enrichment].label}
                 </span>
+                {c.linkedinUrl && (
+                  <a
+                    className="chip chip-linkedin"
+                    href={c.linkedinUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Connect on LinkedIn
+                  </a>
+                )}
                 {c.enrichment !== ENRICHMENT.pending && (
                   <button
                     className="chip chip-action"
