@@ -124,7 +124,7 @@ Extraction JSON schema (LLM output, fixed): `{ name, phone, company, role, note 
 ## Build order (back-to-front, demo green at every step)
 
 1. Send seam: hardcoded contact + bundled image -> WhatsApp intent. Test `jid` on the real phone in the first 30 min; lock in fallback empirically. APK on phone.
-2. Convex project: schema, save mutation, selfie upload, dashboard page reading table (seed rows via script, phone not needed).
+2. Convex project: schema, save mutation, selfie upload, dashboard page reading table (seed rows via script, phone not needed). **DONE 2026-08-30 (web/): all seams proven (save, upload, live subscription, storage URL). NOTE: running on a Convex anonymous LOCAL deployment (`CONVEX_AGENT_MODE=anonymous npx convex dev`, URL in `web/.env.local`); the stored CONVEX_DEPLOY_KEY is invalid (token half only, real keys look like `prod:name\|eyJ...`). Swap to cloud = fix key in .env + `npx convex deploy` + reseed; zero code changes.**
 3. Context.dev enrichment action, tested from a dashboard "re-enrich" button with hardcoded name/company, decoupled from phone flow. (Partner-depth demoable even if later steps slip.)
 4. Screens 0-4 with hardcoded data, navigation, theme, saving to Convex for real.
 5. STT -> Convex extraction action -> Review populated for real. Extraction normalizes digits server-side (default country code from config, not a literal).

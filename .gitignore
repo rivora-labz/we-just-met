@@ -6,6 +6,9 @@ build/
 .idea/
 .DS_Store
 node_modules/
+.env.local
+dist/
+.playwright-mcp/
 .kotlin/
 captures/
 *.apk

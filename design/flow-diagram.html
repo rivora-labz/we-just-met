@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>We Just Met, Flow</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<style>
+  /* Rivora Labz light tokens (SnookColors.light) */
+  :root {
+    --bg:#FAFAF7; --surface:#FFFFFF; --surface-elev:#F7F7F4;
+    --brand-green:#0B3D2E; --brand-primary:#12573F; --brand-hover:#166B4E;
+    --gold:#D4AF37; --gold-text:#8A6A00;
+    --text:#0A0A0A; --text-sec:rgba(0,0,0,.75); --dim:rgba(0,0,0,.60);
+    --border:#8F8F8F; --error:#C0392B;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,'SF Pro Display',Inter,sans-serif; padding:32px 24px 64px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  h1 span { color:var(--brand-primary); }
+  .sub { color:var(--dim); font-size:13px; margin-bottom:28px; }
+  h2 { font-size:15px; color:var(--brand-primary); text-transform:uppercase; letter-spacing:.08em; margin:36px 0 12px; }
+  .card { background:var(--surface); border-radius:24px; padding:20px; overflow-x:auto;
+          box-shadow:0 2px 12px rgba(11,61,46,.08), 0 1px 3px rgba(0,0,0,.05); }
+  .mermaid { display:flex; justify-content:center; }
+  .legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:10px; font-size:12px; color:var(--dim); }
+  .legend i { display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:5px; vertical-align:middle; }
+  .cta-demo { margin-top:14px; display:flex; gap:12px; align-items:center; }
+  .btn-primary { height:52px; padding:0 28px; border:none; border-radius:12px; color:#fff; font-size:16px; font-weight:600; cursor:pointer;
+                 background:linear-gradient(180deg, var(--brand-hover), var(--brand-primary), var(--brand-green));
+                 transition:transform .18s cubic-bezier(.34,1.56,.64,1); }
+  .btn-primary:active { transform:scale(.952); }
+  .btn-secondary { height:52px; padding:0 28px; border-radius:12px; background:var(--surface); border:1px solid var(--border);
+                   color:var(--brand-primary); font-size:16px; font-weight:600; cursor:pointer;
+                   transition:transform .18s cubic-bezier(.34,1.56,.64,1); }
+  .btn-secondary:active { transform:scale(.952); }
+  .chip { font-size:12px; color:var(--gold-text); border:1px solid var(--gold); border-radius:999px; padding:4px 12px; }
+</style>
+</head>
+<body>
+
+<h1>We Just Met <span>/ flow</span></h1>
+<div class="sub">One-sided contact exchange. They install nothing. Demo at 17:00. Theme: Rivora Labz light (forest green on cream), this page IS the palette preview.</div>
+
+<h2>0. Finalized UI tokens (press the buttons)</h2>
+<div class="card">
+  <div class="cta-demo">
+    <button class="btn-primary">We just met</button>
+    <button class="btn-secondary">Skip for now</button>
+    <span class="chip">nudge in 47h</span>
+  </div>
+  <div class="legend" style="margin-top:14px">
+    <span><i style="background:#FAFAF7;border:1px solid #ddd"></i>bg #FAFAF7 cream</span>
+    <span><i style="background:#0B3D2E"></i>brandGreen #0B3D2E</span>
+    <span><i style="background:#12573F"></i>brandPrimary #12573F</span>
+    <span><i style="background:#166B4E"></i>hover #166B4E</span>
+    <span><i style="background:#D4AF37"></i>accentGold #D4AF37</span>
+    <span><i style="background:#0A0A0A"></i>text #0A0A0A</span>
+  </div>
+  <div class="legend" style="margin-top:6px">
+    <span>Primary CTA: 52dp, 12dp radius, green vertical gradient, pressScale 0.952 spring (MediumBouncy), 220ms fire delay</span>
+  </div>
+</div>
+
+<h2>1. The 60-second demo flow (user + data)</h2>
+<div class="card">
+<pre class="mermaid">
+flowchart TD
+  classDef screen fill:#EAF3EF,stroke:#12573F,color:#0A0A0A,rx:12
+  classDef backend fill:#EDF0FA,stroke:#4A5FC1,color:#0A0A0A,rx:12
+  classDef external fill:#F4ECF9,stroke:#8E44AD,color:#0A0A0A,rx:12
+  classDef judge fill:#FBF3DC,stroke:#B8961F,color:#0A0A0A,rx:12
+  classDef once fill:#FFFFFF,stroke:#8F8F8F,stroke-dasharray:5 4,color:#0A0A0A,rx:12
+
+  ONB["SCREEN 0: FIRST-RUN SETUP (one-time, skippable)<br/><i>'This is you.'</i><br/>my name, WhatsApp number, LinkedIn URL, photo<br/>+ optional 'Enrich me' via Context.dev &rarr; feeds message template"]:::once
+  A["HOME<br/><i>'Meet someone. Hand them your phone.'</i><br/>recent contacts + big green CTA"]:::screen
+  B["CAPTURE<br/>forest-green pulsing orb, gold ring while hearing<br/>they speak name / number / company / topic"]:::screen
+  CD["COUNTDOWN OVERLAY<br/><i>'Ready for selfie, 3, 2, 1, go'</i><br/>hides extraction latency"]:::screen
+  CAM["CameraX front lens<br/>AUTO-captures at zero<br/>(tap thumb on Review to retake)"]:::backend
+  C["REVIEW<br/>card + selfie arrive PRE-FILLED<br/>fields editable (safety net), shimmer if extraction in flight"]:::screen
+  D["SEND<br/>WhatsApp-style preview bubble<br/>selfie + templated message (uses MY profile from screen 0)"]:::screen
+
+  STT["Platform SpeechRecognizer (on-device, LOCKED)<br/><i>dumb ears: rough transcript is fine,<br/>live partials feed the orb</i>"]:::backend
+  EXT["Convex action: LLM extraction<br/>fixed JSON {name, phone, company, role, note}<br/><i>runs in PARALLEL with countdown + selfie</i>"]:::backend
+  WA["WhatsApp<br/>ACTION_SEND + EXTRA_STREAM + jid<br/><i>fallback: contact insert or 1-tap picker</i>"]:::external
+  CVX["Convex<br/>contacts table + selfie storage<br/>+ 48h follow-up schedule"]:::backend
+  CTX["Context.dev enrichment<br/>name+company &rarr; role, LinkedIn URL"]:::external
+  LI["STRETCH ONLY (hard cut 1)<br/>Context.dev browser action:<br/>find LinkedIn + send connect request"]:::external
+  DASH["WEB DASHBOARD (judge screen)<br/>live row appears &rarr; enrichment fills in<br/>follow-up countdown chip"]:::judge
+  WIN["SUCCESS MOMENT<br/>full-screen Lottie burst, green + gold on cream<br/><i>'Now they can't forget you.'</i><br/>auto-dismiss 2.5s"]:::screen
+
+  ONB -->|"first launch only, then never again"| A
+  A -->|"tap 'We just met'"| B
+  B -->|"silence / tap orb"| CD
+  CD -->|"at zero"| CAM --> C
+  B -.->|"parallel"| STT -.-> EXT -.->|"fields land"| C
+  C -->|"name + phone present"| D
+  D -->|"one tap"| WA
+  D -->|"on return: save"| CVX
+  CVX -->|"async action"| CTX
+  CTX -->|"role + URL land"| CVX
+  CTX -.->|"stretch"| LI
+  CVX -->|"live subscription"| DASH
+  D -->|"on return"| WIN -->|"2.5s / tap"| A
+</pre>
+</div>
+<div class="legend">
+  <span><i style="background:#EAF3EF;border:1px solid #12573F"></i>App screens</span>
+  <span><i style="background:#EDF0FA;border:1px solid #4A5FC1"></i>Convex / device services</span>
+  <span><i style="background:#F4ECF9;border:1px solid #8E44AD"></i>External seams (risky)</span>
+  <span><i style="background:#FBF3DC;border:1px solid #B8961F"></i>Judge-facing surface</span>
+  <span><i style="background:#FFFFFF;border:1px dashed #8F8F8F"></i>One-time onboarding</span>
+</div>
+
+<h2>2. Build order (back-to-front, green at every hour)</h2>
+<div class="card">
+<pre class="mermaid">
+flowchart LR
+  classDef done fill:#EAF3EF,stroke:#12573F,color:#0A0A0A,rx:10
+  classDef risk fill:#FBE9E5,stroke:#C0392B,color:#0A0A0A,rx:10
+  classDef cut fill:#F4F4F0,stroke:#8F8F8F,color:rgba(0,0,0,.60),rx:10
+
+  S1["1. SEND SEAM<br/>hardcoded contact + bundled image<br/>test jid on real phone in 30 min"]:::risk
+  S2["2. CONVEX + DASHBOARD<br/>schema, mutation, storage,<br/>live page (seed via script)"]:::done
+  S3["3. CONTEXT.DEV ACTION<br/>test from dashboard button,<br/>decoupled from phone"]:::done
+  S4["4. SCREENS 0-4<br/>nav + Rivora light theme + hardcoded data<br/>&rarr; demoable even w/o voice"]:::done
+  S5["5. STT + EXTRACTION<br/>flakiest input, editing = safety net"]:::risk
+  S6["6. COUNTDOWN SELFIE + WIRING<br/>CameraX auto-capture at zero,<br/>follow-up fn"]:::done
+  S7["7. POLISH + REHEARSE<br/>run the 60s demo 5x"]:::done
+
+  S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7
+
+  C1["cut 1: ContactsContract<br/>(unless jid fallback needs it)"]:::cut
+  C2["cut 2: real 48h schedule<br/>(chip stays, faked)"]:::cut
+  C3["cut 3: first-run setup screen<br/>(profile falls back to config)"]:::cut
+  NC["NEVER CUT: send seam, selfie,<br/>dashboard live update, inline phone edit"]:::risk
+</pre>
+</div>
+
+<h2>3. Failure modes rehearsed into the script</h2>
+<div class="card">
+<pre class="mermaid">
+flowchart TD
+  classDef ok fill:#EAF3EF,stroke:#12573F,color:#0A0A0A,rx:12
+  classDef fail fill:#FBE9E5,stroke:#C0392B,color:#0A0A0A,rx:12
+
+  J["jid extra fires?"]:::fail
+  J -->|yes| J1["thread opens pre-targeted,<br/>zero extra taps"]:::ok
+  J -->|ignored| J2["share sheet, WhatsApp pinned,<br/>one tap on recipient,<br/>script absorbs it"]:::ok
+
+  N["STT mangles phone number?"]:::fail
+  N -->|yes| N1["demo person edits inline on Review<br/>in 2 seconds, looks intentional"]:::ok
+  N -->|no| N2["straight through"]:::ok
+</pre>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+      background: '#FAFAF7',
+      primaryColor: '#FFFFFF',
+      primaryTextColor: '#0A0A0A',
+      primaryBorderColor: '#12573F',
+      lineColor: '#12573F',
+      fontSize: '14px'
+    },
+    flowchart: { curve: 'basis', htmlLabels: true }
+  });
+</script>
+</body>
+</html>

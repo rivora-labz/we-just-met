@@ -1,0 +1,197 @@
+/* Rivora Labz light theme tokens, mirrored from PLAN.md / core Theme. Single source for the web. */
+:root {
+  --bg-primary: #fafaf7;
+  --surface-card: #ffffff;
+  --surface-elevated: #f7f7f4;
+  --surface-input: #f4f4f0;
+  --brand-green: #0b3d2e;
+  --brand-primary: #12573f;
+  --brand-primary-hover: #166b4e;
+  --accent-gold: #d4af37;
+  --accent-gold-text: #8a6a00;
+  --text-primary: #0a0a0a;
+  --text-secondary: rgba(0, 0, 0, 0.75);
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --border-control: #8f8f8f;
+  --status-success: #27ae60;
+  --status-error: #c0392b;
+  --radius-card: 24px;
+  --radius-chip: 999px;
+  --shadow-card: 0 8px 28px rgba(11, 61, 46, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 24px 64px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--brand-green);
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  font-size: 15px;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+}
+
+.stat {
+  background: var(--surface-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 16px 24px;
+  min-width: 140px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--brand-primary);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.avatar-fallback {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.card-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.card-name {
+  font-weight: 700;
+  font-size: 17px;
+  margin: 0;
+}
+
+.card-meta {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 2px 0 0;
+}
+
+.card-note {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 8px 0 0;
+  font-style: italic;
+}
+
+.card-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.chip {
+  border-radius: var(--radius-chip);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip-followup {
+  background: var(--surface-input);
+  color: var(--accent-gold-text);
+  border: 1px solid var(--accent-gold);
+}
+
+.chip-met {
+  background: var(--surface-elevated);
+  color: var(--text-muted);
+}
+
+.chip-pending {
+  background: var(--surface-input);
+  color: var(--text-muted);
+  border: 1px dashed var(--border-control);
+}
+
+.chip-done {
+  background: rgba(39, 174, 96, 0.12);
+  color: var(--status-success);
+}
+
+.chip-failed {
+  background: rgba(192, 57, 43, 0.1);
+  color: var(--status-error);
+}
+
+.empty {
+  margin-top: 48px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 16px;
+}
