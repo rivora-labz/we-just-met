@@ -121,6 +121,58 @@
   .partner-b { font-size:16.5px; line-height:1.5; color:var(--text-sec); }
   .partner-b li { margin:0 0 8px 18px; }
 
+  /* ---------- live walkthrough phones ---------- */
+  .phones { display:flex; gap:26px; justify-content:center; align-items:flex-start; margin-top:20px; }
+  .phone-wrap { display:flex; flex-direction:column; align-items:center; }
+  .mini-phone { width:232px; height:460px; border-radius:30px; background:var(--bg); overflow:hidden; position:relative;
+                box-shadow:0 0 0 6px #141414, 0 14px 30px rgba(0,0,0,.22);
+                display:flex; flex-direction:column; align-items:center; }
+  .mini-label { font-size:13px; font-weight:700; color:var(--brand-primary); margin-top:12px; text-transform:uppercase; letter-spacing:.08em; }
+  .flow-arrow { align-self:center; font-size:26px; color:var(--gold-text); font-weight:800; margin-top:-40px; }
+
+  .mini-orb { width:86px; height:86px; border-radius:50%; z-index:3;
+              background:radial-gradient(circle at 32% 28%, var(--brand-hover) 0%, var(--brand-primary) 45%, var(--brand-green) 100%);
+              box-shadow:0 6px 22px rgba(11,61,46,.35), inset 0 -5px 12px rgba(0,0,0,.25);
+              animation:breathe 1.1s ease-in-out infinite; }
+  .mini-stage { position:relative; width:140px; height:140px; display:flex; align-items:center; justify-content:center; margin-top:34px; }
+  .mini-halo { position:absolute; border-radius:50%; border:2px solid rgba(18,87,63,.35); width:86px; height:86px; animation:halo 2.6s ease-out infinite; }
+  .mini-gold { position:absolute; width:104px; height:104px; border-radius:50%; border:2.5px solid var(--gold);
+               box-shadow:0 0 16px rgba(212,175,55,.55); animation:goldpulse 1.1s ease-in-out infinite; }
+  .mini-prompt { font-size:11.5px; color:var(--text-sec); text-align:center; padding:0 18px; margin-top:26px; line-height:1.4; }
+  .mini-transcript { font-size:11px; font-style:italic; color:var(--dim); text-align:center; padding:0 16px; margin-top:18px; line-height:1.5; }
+  .mini-transcript b { color:var(--text-sec); font-style:normal; }
+
+  .viewfinder { position:absolute; inset:0; background:linear-gradient(180deg, #123f30, #0B3D2E 55%, #06251B); display:flex; align-items:center; justify-content:center; }
+  .vf-go { position:absolute; font-size:64px; font-weight:800; color:#fff; text-shadow:0 0 24px rgba(212,175,55,.9); animation:goflash 1.6s ease-in-out infinite; z-index:4; }
+  @keyframes goflash { 0%,100% { opacity:.25; transform:scale(.94);} 50% { opacity:1; transform:scale(1.06);} }
+  .vf-flash { position:absolute; inset:0; background:#fff; opacity:0; animation:camflash 3.2s ease-out infinite; z-index:5; }
+  @keyframes camflash { 0%, 88%, 100% { opacity:0; } 92% { opacity:.85; } 96% { opacity:0; } }
+  .vf-hud { position:absolute; top:14px; left:0; right:0; text-align:center; font-size:11px; color:rgba(255,255,255,.75); letter-spacing:.1em; text-transform:uppercase; z-index:4; }
+
+  .selfie-thumb { border-radius:14px; background:linear-gradient(180deg, #166B4E, #0B3D2E); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+  .selfie-thumb svg { display:block; }
+
+  .rv-field { background:var(--surface); border:1px solid rgba(0,0,0,.10); border-radius:10px; padding:6px 10px; font-size:11.5px; margin-top:7px; width:186px; }
+  .rv-field .lab { font-size:8.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--dim); }
+  .rv-cta { margin-top:12px; width:186px; height:34px; border-radius:9px; background:var(--grad); color:#fff;
+            display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; }
+
+  .wa-head { width:100%; background:#075E54; color:#fff; display:flex; align-items:center; gap:8px; padding:10px 12px; font-size:12.5px; font-weight:700; }
+  .wa-ava { width:26px; height:26px; border-radius:50%; background:linear-gradient(180deg,#166B4E,#0B3D2E); color:#fff; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .wa-body { flex:1; width:100%; background:#ECE5DD; padding:12px 10px; display:flex; flex-direction:column; align-items:flex-end; }
+  .wa-bubble { background:#DCF8C6; border-radius:12px 2px 12px 12px; padding:7px; max-width:184px; box-shadow:0 1px 2px rgba(0,0,0,.15); }
+  .wa-text { font-size:10.5px; line-height:1.45; color:#111; margin-top:6px; }
+  .wa-meta { font-size:9px; color:rgba(0,0,0,.45); text-align:right; margin-top:3px; }
+  .wa-meta .tick { color:#34B7F1; font-weight:800; }
+
+  /* ---------- reversed orb (future search agent) ---------- */
+  .orb.rev, .mini-orb.rev {
+    background:radial-gradient(circle at 32% 28%, #E9CE6B 0%, var(--gold) 45%, #8A6A00 100%);
+    box-shadow:0 6px 22px rgba(138,106,0,.40), inset 0 -5px 12px rgba(0,0,0,.20);
+  }
+  .green-ring { position:absolute; border-radius:50%; border:2.5px solid var(--brand-primary);
+                box-shadow:0 0 16px rgba(18,87,63,.55); animation:goldpulse 1.6s ease-in-out infinite; }
+
   .rival { display:flex; align-items:center; gap:14px; background:var(--surface); border-radius:24px; padding:16px 22px; box-shadow:0 4px 18px rgba(11,61,46,.07); font-size:19px; }
   .rival .x { color:#C0392B; font-weight:800; font-size:22px; flex:0 0 auto; }
 
@@ -222,6 +274,78 @@
     </div>
   </section>
 
+  <!-- 4b. LIVE PRODUCT WALKTHROUGH -->
+  <section class="slide">
+    <div class="kicker">The product, live</div>
+    <h2>What the phone shows, end to end.</h2>
+    <div class="phones">
+
+      <div class="phone-wrap">
+        <div class="mini-phone">
+          <div class="mini-prompt"><b style="font-size:13px;">Hi! I'm listening.</b><br>Say your name, number, company and what we talked about.</div>
+          <div class="mini-stage">
+            <div class="mini-halo"></div>
+            <div class="mini-gold"></div>
+            <div class="mini-orb"></div>
+          </div>
+          <div class="mini-transcript"><b>...I run partnerships at Falcon Ventures, we talked about the Dubai padel league</b>&hellip;</div>
+          <div style="position:absolute; bottom:16px; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-text);">hearing you</div>
+        </div>
+        <div class="mini-label">1 &middot; Orb listens</div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="mini-phone">
+          <div class="viewfinder">
+            <div class="vf-hud">Front camera &middot; auto</div>
+            <svg width="180" height="120" viewBox="0 0 180 120" style="position:absolute; bottom:0;">
+              <circle cx="62" cy="46" r="26" fill="rgba(255,255,255,.92)"/>
+              <ellipse cx="62" cy="112" rx="42" ry="40" fill="rgba(255,255,255,.92)"/>
+              <circle cx="122" cy="52" r="23" fill="rgba(255,255,255,.78)"/>
+              <ellipse cx="122" cy="114" rx="38" ry="36" fill="rgba(255,255,255,.78)"/>
+            </svg>
+            <div class="vf-go">GO</div>
+            <div class="vf-flash"></div>
+          </div>
+        </div>
+        <div class="mini-label">2 &middot; 3-2-1 auto-selfie</div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="mini-phone" style="align-items:center; padding-top:16px;">
+          <div class="selfie-thumb" style="width:64px; height:64px; border-radius:50%;">
+            <svg width="64" height="44" viewBox="0 0 64 44"><circle cx="23" cy="14" r="10" fill="rgba(255,255,255,.92)"/><ellipse cx="23" cy="42" rx="16" ry="15" fill="rgba(255,255,255,.92)"/><circle cx="44" cy="17" r="9" fill="rgba(255,255,255,.78)"/><ellipse cx="44" cy="43" rx="14" ry="13" fill="rgba(255,255,255,.78)"/></svg>
+          </div>
+          <div class="rv-field"><div class="lab">Name</div>Sarah Chen</div>
+          <div class="rv-field"><div class="lab">WhatsApp</div>+971 55 524 1418</div>
+          <div class="rv-field"><div class="lab">Company</div>Falcon Ventures</div>
+          <div class="rv-field"><div class="lab">We talked about</div>Dubai padel league</div>
+          <div class="rv-cta">Send on WhatsApp</div>
+          <div style="font-size:9px; color:var(--dim); margin-top:8px;">every field editable, human safety net</div>
+        </div>
+        <div class="mini-label">3 &middot; Review card</div>
+      </div>
+
+      <div class="phone-wrap">
+        <div class="mini-phone">
+          <div class="wa-head"><span style="opacity:.8;">&larr;</span><div class="wa-ava">SC</div>Sarah Chen</div>
+          <div class="wa-body">
+            <div class="wa-bubble">
+              <div class="selfie-thumb" style="width:100%; height:74px;">
+                <svg width="170" height="66" viewBox="0 0 170 66"><circle cx="60" cy="22" r="15" fill="rgba(255,255,255,.92)"/><ellipse cx="60" cy="64" rx="24" ry="22" fill="rgba(255,255,255,.92)"/><circle cx="106" cy="26" r="13" fill="rgba(255,255,255,.78)"/><ellipse cx="106" cy="65" rx="21" ry="19" fill="rgba(255,255,255,.78)"/></svg>
+              </div>
+              <div class="wa-text">Hi Sarah, great meeting you today! Narayan here. Loved the Dubai padel league idea, let's make it happen. Here's me: linkedin.com/in/narayandhingra</div>
+              <div class="wa-meta">16:42 <span class="tick">&#10003;&#10003;</span></div>
+            </div>
+            <div style="font-size:9px; color:rgba(0,0,0,.5); margin-top:8px;">landed via jid intent, zero taps for Sarah</div>
+          </div>
+        </div>
+        <div class="mini-label">4 &middot; In their WhatsApp</div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- 5. PARTNER STACK -->
   <section class="slide">
     <div class="kicker">Partner stack, all three load-bearing</div>
@@ -307,11 +431,21 @@
       <div class="orb" style="width:130px; height:130px;"></div>
     </div>
     <h1 style="font-size:58px;">"Now they can't forget you."</h1>
-    <div class="kicker" style="margin-top:40px; margin-bottom:18px;">What's next</div>
-    <div style="display:flex; gap:14px;">
-      <span class="pill outline" style="font-size:17px; padding:12px 20px;">LinkedIn auto-connect via Context.dev browser actions</span>
-      <span class="pill outline" style="font-size:17px; padding:12px 20px;">iOS via KMP</span>
-      <span class="pill outline" style="font-size:17px; padding:12px 20px;">CRM export</span>
+    <div class="kicker" style="margin-top:34px; margin-bottom:16px;">What's next</div>
+    <div class="card" style="display:flex; align-items:center; gap:20px; padding:18px 26px; max-width:760px; text-align:left;">
+      <div style="position:relative; width:74px; height:74px; flex:none; display:flex; align-items:center; justify-content:center;">
+        <div class="green-ring" style="width:70px; height:70px;"></div>
+        <div class="mini-orb rev" style="width:54px; height:54px; animation-duration:2.6s;"></div>
+      </div>
+      <div>
+        <div style="font-size:19px; font-weight:800;" class="goldt">The orb, reversed: your personal voice agent</div>
+        <div style="font-size:15.5px; color:var(--text-sec); line-height:1.45; margin-top:4px;">Ask it to search the people you've already met: <i>"Who did I meet at TheBlock who was into padel?"</i> Same orb, gold side out. Future release, not in this MVP.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px; margin-top:16px;">
+      <span class="pill outline" style="font-size:16px; padding:11px 18px;">LinkedIn auto-connect via Context.dev browser actions</span>
+      <span class="pill outline" style="font-size:16px; padding:11px 18px;">iOS via KMP</span>
+      <span class="pill outline" style="font-size:16px; padding:11px 18px;">CRM export</span>
     </div>
     <div class="presenter" style="margin-top:44px; justify-content:center;">
       <div class="avatar"><img src="founder.jpg" alt="Narayan Dhingra" onerror="this.remove()">ND</div>
