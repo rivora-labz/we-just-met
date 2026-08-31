@@ -105,6 +105,17 @@
   #hint { position:absolute; bottom:26px; left:34px; z-index:20; font-size:13px; color:var(--dim); }
   #progress { position:absolute; top:0; left:0; height:4px; background:var(--grad); z-index:20; transition:width .3s ease; border-radius:0 4px 4px 0; }
 
+  /* ---------- print: one slide per page (deck.pdf generation) ---------- */
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { height:auto; overflow:visible; display:block; }
+    #stage { width:1280px; height:auto; position:static; transform:none !important; }
+    .slide { position:relative; inset:auto; width:1280px; height:720px;
+             display:flex !important; animation:none !important;
+             break-after:page; page-break-after:always; }
+    #hint, #counter, #progress { display:none !important; }
+  }
+
   /* ---------- slide-specific ---------- */
   .demo-steps { display:flex; flex-direction:column; gap:16px; margin-top:26px; }
   .step { display:flex; align-items:center; gap:20px; background:var(--surface); border-radius:24px; padding:18px 24px; box-shadow:0 4px 18px rgba(11,61,46,.08); }
