@@ -9,7 +9,8 @@ import android.speech.SpeechRecognizer
 
 /**
  * Platform SpeechRecognizer wrapper (PLAN hard cut 2: dumb ears, smart brain, human net).
- * Streams partials for the orb, auto-finishes on silence, restarts on empty no-match errors.
+ * Continuous: each recognizer session ends at a pause, so results are accumulated and
+ * listening restarts until the user taps stop or a sustained silence follows real speech.
  */
 class SpeechCapture(
     private val context: Context,
@@ -21,7 +22,9 @@ class SpeechCapture(
     private val finalized = StringBuilder()
     private var partial = ""
     private var finished = false
-    private var restarts = 0
+    private var stopRequested = false
+    private var idleSessions = 0
+    private var blankRestarts = 0
 
     val transcript: String
         get() = "$finalized $partial".trim()
@@ -40,6 +43,7 @@ class SpeechCapture(
 
     /** Tap-to-stop: asks the recognizer to wrap up; results arrive via onResults. */
     fun stop() {
+        stopRequested = true
         recognizer?.stopListening()
     }
 
@@ -76,18 +80,33 @@ class SpeechCapture(
             if (finalized.isNotEmpty()) finalized.append(' ')
             finalized.append(text)
             partial = ""
+            idleSessions = 0
+        } else {
+            idleSessions += 1
         }
         onTranscript(transcript)
-        finish()
+        continueOrFinish()
     }
 
     override fun onError(error: Int) {
-        // No speech yet? Keep listening instead of giving up (spurious NO_MATCH/timeouts).
-        if (!finished && transcript.isBlank() && restarts < MAX_RESTARTS) {
-            restarts += 1
-            start()
+        if (finished) return
+        if (transcript.isBlank()) {
+            // Nothing said yet (spurious NO_MATCH/timeouts): keep the mic alive.
+            blankRestarts += 1
+            if (stopRequested || blankRestarts >= MAX_BLANK_RESTARTS) finish() else start()
         } else {
-            finish()
+            idleSessions += 1
+            continueOrFinish()
+        }
+    }
+
+    /** Auto-stop only after the user tapped, or after sustained silence following speech. */
+    private fun continueOrFinish() {
+        when {
+            finished -> Unit
+            stopRequested -> finish()
+            transcript.isNotBlank() && idleSessions >= MAX_IDLE_SESSIONS -> finish()
+            else -> start()
         }
     }
 
@@ -110,6 +129,9 @@ class SpeechCapture(
     private companion object {
         const val SILENCE_MS = 4000
         const val HEARING_RMS_DB = 4f
-        const val MAX_RESTARTS = 4
+        /** Empty sessions (~SILENCE_MS each) after real speech before auto-finishing. */
+        const val MAX_IDLE_SESSIONS = 2
+        /** Sessions with zero speech before giving up entirely. */
+        const val MAX_BLANK_RESTARTS = 60
     }
 }

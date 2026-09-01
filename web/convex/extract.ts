@@ -34,19 +34,34 @@ export function extractContact(transcript: string): Extracted {
   const text = transcript.trim();
   const phone = normalizePhone(findPhoneDigits(text));
   const name = matchSpan(text, [
-    /\b(?:my name is|i am|i'm|this is)\s+([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*)?)/i,
+    /\b(?:my name(?:'s| is)|i am called|myself)\s+([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*)?)/i,
+    /\b(?:i am|i'm|this is)\s+([a-z][a-z'.-]*(?:\s+[a-z][a-z'.-]*)?)/i,
   ], 2);
-  const roleCompany = text.match(
-    /\bi\s+(?:run|lead|head|do|manage)\s+([a-z][a-z\s'&.-]{1,30}?)\s+at\s+([a-z0-9][\w\s'&.-]{1,40})/i,
+
+  let role = "";
+  let company = "";
+  const runsAt = text.match(
+    /\bi\s+(?:run|lead|head|do|manage|handle)\s+([a-z][a-z\s'&.-]{1,30}?)\s+at\s+([a-z0-9][\w\s'&.-]{1,40})/i,
   );
-  const role = roleCompany ? trimSpan(roleCompany[1], 3) : "";
-  const company = roleCompany
-    ? trimSpan(roleCompany[2], 4)
-    : matchSpan(text, [
-        /\b(?:i work (?:at|for)|working at|work at|i'm with|company is)\s+([a-z0-9][\w\s'&.-]{1,40})/i,
-      ], 4);
+  const amAt = text.match(
+    /\b(?:i am|i'm)\s+(?:the\s+|a\s+)?([a-z][a-z\s'&.-]{1,30}?)\s+at\s+([a-z0-9][\w\s'&.-]{1,40})/i,
+  );
+  if (runsAt) {
+    role = trimSpan(runsAt[1], 3);
+    company = trimSpan(runsAt[2], 4);
+  } else if (amAt) {
+    const candidate = trimSpan(amAt[1], 3);
+    // "I'm Sarah at Google" carries the name, not a role.
+    role = candidate.toLowerCase() === name.toLowerCase() ? "" : candidate;
+    company = trimSpan(amAt[2], 4);
+  } else {
+    company = matchSpan(text, [
+      /\b(?:i work (?:at|for|with)|working at|work at|i'?m with|i am with|company(?: name)? is|company called)\s+([a-z0-9][\w\s'&.-]{1,40})/i,
+    ], 4);
+  }
+
   const note = matchSpan(text, [
-    /\b(?:talked about|talking about|talk about|discussed|spoke about)\s+(.{3,90}?)(?:[.!?]|$)/i,
+    /\b(?:talk(?:ed|ing)? about|(?:spoke|speaking) about|discussed|we discussed|chatted about|talked regarding)\s+(.{3,90}?)(?:[.!?]|$)/i,
   ], 12, false);
 
   return { name: titleCase(name), phone, company: titleCase(company), role, note };
@@ -101,7 +116,10 @@ function normalizePhone(raw: string): string {
 function matchSpan(text: string, patterns: RegExp[], maxWords: number, stopAtStopword = true): string {
   for (const pattern of patterns) {
     const match = text.match(pattern);
-    if (match?.[1]) return trimSpan(match[1], maxWords, stopAtStopword);
+    if (match?.[1]) {
+      const span = trimSpan(match[1], maxWords, stopAtStopword);
+      if (span) return span;
+    }
   }
   return "";
 }

@@ -87,6 +87,16 @@ private object OrbSpec {
 
 private const val STOP_RESULT_GRACE_MS = 900L
 
+/**
+ * TakePicture with NO_HISTORY: the camera activity must never linger on our task stack,
+ * otherwise leaving mid-capture makes the launcher icon reopen straight into the camera.
+ */
+private class TakeSelfieContract : ActivityResultContracts.TakePicture() {
+    override fun createIntent(context: android.content.Context, input: android.net.Uri) =
+        super.createIntent(context, input)
+            .addFlags(android.content.Intent.FLAG_ACTIVITY_NO_HISTORY)
+}
+
 @Composable
 fun CaptureScreen(
     extract: suspend (String) -> ContactDraft,
@@ -105,7 +115,7 @@ fun CaptureScreen(
 
     // PLAN camera fallback path: system camera writes into the FileProvider cache slot.
     val takeSelfie = rememberLauncherForActivityResult(
-        ActivityResultContracts.TakePicture(),
+        TakeSelfieContract(),
     ) { captured ->
         val file = WhatsAppSender.selfieFile(context)
         val draft = pendingDraft ?: ContactDraft(note = transcript.trim())

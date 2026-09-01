@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.wejustmet.core.AppConfig
 import app.wejustmet.core.ContactDraft
+import app.wejustmet.core.PhoneNormalizer
 import app.wejustmet.data.ConvexRepo
 import app.wejustmet.data.OwnerStore
 import app.wejustmet.send.WhatsAppSender
@@ -150,9 +151,12 @@ private fun JustMetApp() {
                 selfie = capturedSelfie,
                 sending = sending,
                 onRetakeSelfie = { screen = Screen.Capture },
-                onSend = { draft, message ->
+                onSend = { edited, message ->
                     if (sending) return@ReviewScreen
                     sending = true
+                    // Manual edits normalize here; a leading-zero jid makes WhatsApp
+                    // ignore the extra and show its forward picker.
+                    val draft = edited.copy(phone = PhoneNormalizer.toE164(edited.phone))
                     val selfie = capturedSelfie ?: WhatsAppSender.stagedDemoSelfie(context)
                     val error = WhatsAppSender.send(context, draft.phone, message, selfie)
                     if (error != null) {
