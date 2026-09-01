@@ -1,11 +1,11 @@
-# Graph Report - /Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app  (2026-08-30)
+# Graph Report - /Users/narayandhingra/Documents/Claude/Projects/We-Just-Met/app  (2026-09-01)
 
 ## Corpus Check
-- 35 files · ~22,729 words
+- 36 files · ~29,790 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 112 nodes · 91 edges · 30 communities detected
+- 120 nodes · 98 edges · 31 communities detected
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
@@ -40,18 +40,19 @@
 - [[_COMMUNITY_Community 27|Community 27]]
 - [[_COMMUNITY_Community 28|Community 28]]
 - [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `SpeechCapture` - 15 edges
-2. `extractContact()` - 6 edges
-3. `ConvexRepo` - 5 edges
-4. `WhatsAppSender` - 5 edges
+1. `SpeechCapture` - 16 edges
+2. `WhatsAppSender` - 7 edges
+3. `extractContact()` - 6 edges
+4. `ConvexRepo` - 5 edges
 5. `OwnerStore` - 4 edges
-6. `matchSpan()` - 3 edges
-7. `trimSpan()` - 3 edges
-8. `callContextDev()` - 3 edges
-9. `MainActivity` - 2 edges
-10. `MessageTemplate` - 2 edges
+6. `SendConfig` - 3 edges
+7. `matchSpan()` - 3 edges
+8. `trimSpan()` - 3 edges
+9. `callContextDev()` - 3 edges
+10. `MainActivity` - 2 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -68,23 +69,23 @@ Nodes (7): Capture, MainActivity, Onboarding, People, Review, Screen, Success
 
 ### Community 2 - "Community 2"
 Cohesion: 0.25
-Nodes (3): ContactRow, ConvexRepo, ExtractedDraft
+Nodes (2): OrbSpec, TakeSelfieContract
 
 ### Community 3 - "Community 3"
+Cohesion: 0.25
+Nodes (3): ContactRow, ConvexRepo, ExtractedDraft
+
+### Community 4 - "Community 4"
+Cohesion: 0.25
+Nodes (1): WhatsAppSender
+
+### Community 5 - "Community 5"
 Cohesion: 0.32
 Nodes (3): callContextDev(), enrichViaPeopleApi(), enrichViaSearch()
 
-### Community 4 - "Community 4"
-Cohesion: 0.29
-Nodes (1): OrbSpec
-
-### Community 5 - "Community 5"
+### Community 6 - "Community 6"
 Cohesion: 0.57
 Nodes (6): extractContact(), findPhoneDigits(), matchSpan(), normalizePhone(), titleCase(), trimSpan()
-
-### Community 6 - "Community 6"
-Cohesion: 0.33
-Nodes (1): WhatsAppSender
 
 ### Community 7 - "Community 7"
 Cohesion: 0.4
@@ -96,15 +97,15 @@ Nodes (0):
 
 ### Community 9 - "Community 9"
 Cohesion: 0.5
-Nodes (0): 
+Nodes (1): SendConfig
 
 ### Community 10 - "Community 10"
-Cohesion: 0.67
-Nodes (1): ButtonSpec
+Cohesion: 0.5
+Nodes (0): 
 
 ### Community 11 - "Community 11"
 Cohesion: 0.67
-Nodes (0): 
+Nodes (1): ButtonSpec
 
 ### Community 12 - "Community 12"
 Cohesion: 0.67
@@ -112,35 +113,35 @@ Nodes (0):
 
 ### Community 13 - "Community 13"
 Cohesion: 0.67
-Nodes (1): MessageTemplate
+Nodes (0): 
 
 ### Community 14 - "Community 14"
 Cohesion: 0.67
-Nodes (1): SendConfig
+Nodes (1): MessageTemplate
 
 ### Community 15 - "Community 15"
-Cohesion: 1.0
-Nodes (1): Tokens
+Cohesion: 0.67
+Nodes (1): PhoneNormalizer
 
 ### Community 16 - "Community 16"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): Tokens
 
 ### Community 17 - "Community 17"
 Cohesion: 1.0
-Nodes (1): ContactDraft
+Nodes (0): 
 
 ### Community 18 - "Community 18"
 Cohesion: 1.0
-Nodes (1): OwnerProfile
+Nodes (1): ContactDraft
 
 ### Community 19 - "Community 19"
 Cohesion: 1.0
-Nodes (1): AppConfig
+Nodes (1): OwnerProfile
 
 ### Community 20 - "Community 20"
 Cohesion: 1.0
-Nodes (0): 
+Nodes (1): AppConfig
 
 ### Community 21 - "Community 21"
 Cohesion: 1.0
@@ -178,38 +179,42 @@ Nodes (0):
 Cohesion: 1.0
 Nodes (0): 
 
+### Community 30 - "Community 30"
+Cohesion: 1.0
+Nodes (0): 
+
 ## Knowledge Gaps
 - **14 isolated node(s):** `Screen`, `Onboarding`, `Capture`, `People`, `Review` (+9 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **Thin community `Community 15`** (2 nodes): `Tokens`, `Theme.kt`
+- **Thin community `Community 16`** (2 nodes): `Tokens`, `Theme.kt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 16`** (2 nodes): `SuccessScreen()`, `SuccessScreen.kt`
+- **Thin community `Community 17`** (2 nodes): `SuccessScreen()`, `SuccessScreen.kt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 17`** (2 nodes): `ContactDraft`, `ContactDraft.kt`
+- **Thin community `Community 18`** (2 nodes): `ContactDraft`, `ContactDraft.kt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 18`** (2 nodes): `OwnerProfile`, `OwnerProfile.kt`
+- **Thin community `Community 19`** (2 nodes): `OwnerProfile`, `OwnerProfile.kt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 19`** (2 nodes): `AppConfig`, `AppConfig.kt`
+- **Thin community `Community 20`** (2 nodes): `AppConfig`, `AppConfig.kt`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 20`** (2 nodes): `dataModel.d.ts`, `schema.ts`
+- **Thin community `Community 21`** (2 nodes): `dataModel.d.ts`, `schema.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 21`** (1 nodes): `settings.gradle.kts`
+- **Thin community `Community 22`** (1 nodes): `settings.gradle.kts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 22`** (1 nodes): `build.gradle.kts`
+- **Thin community `Community 23`** (1 nodes): `build.gradle.kts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 23`** (1 nodes): `vite.config.ts`
+- **Thin community `Community 24`** (1 nodes): `vite.config.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 24`** (1 nodes): `env.d.ts`
+- **Thin community `Community 25`** (1 nodes): `env.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 25`** (1 nodes): `server.d.ts`
+- **Thin community `Community 26`** (1 nodes): `server.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 26`** (1 nodes): `server.js`
+- **Thin community `Community 27`** (1 nodes): `server.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 27`** (1 nodes): `api.js`
+- **Thin community `Community 28`** (1 nodes): `api.js`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 28`** (1 nodes): `main.tsx`
+- **Thin community `Community 29`** (1 nodes): `main.tsx`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Community 29`** (1 nodes): `vite-env.d.ts`
+- **Thin community `Community 30`** (1 nodes): `vite-env.d.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
