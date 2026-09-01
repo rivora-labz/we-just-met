@@ -10,5 +10,9 @@ data class ContactDraft(
 ) {
     val readyToCompose: Boolean
         get() = name.isNotBlank() && phone.isNotBlank()
+
+    val isEmpty: Boolean
+        get() = name.isBlank() && phone.isBlank() && company.isBlank() &&
+            role.isBlank() && note.isBlank()
 }
 

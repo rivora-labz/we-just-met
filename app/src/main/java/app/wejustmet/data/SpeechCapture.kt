@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.util.Log
 
 /**
  * Platform SpeechRecognizer wrapper (PLAN hard cut 2: dumb ears, smart brain, human net).
@@ -30,15 +31,20 @@ class SpeechCapture(
         get() = "$finalized $partial".trim()
 
     fun start() {
+        if (finished) return
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
             finish()
             return
         }
-        recognizer?.destroy()
-        recognizer = SpeechRecognizer.createSpeechRecognizer(context).also {
+        // Reuse ONE recognizer for the whole capture. Destroy-per-restart cancelled
+        // in-flight sessions and their undelivered results (seen in logs as
+        // "User cancelled, closing S3 stream" + orphan sessions).
+        val active = recognizer ?: SpeechRecognizer.createSpeechRecognizer(context).also {
             it.setRecognitionListener(this)
-            it.startListening(listenIntent())
+            recognizer = it
         }
+        Log.d(TAG, "startListening idle=$idleSessions blank=$blankRestarts len=${transcript.length}")
+        active.startListening(listenIntent())
     }
 
     /** Tap-to-stop: asks the recognizer to wrap up; results arrive via onResults. */
@@ -76,20 +82,35 @@ class SpeechCapture(
     override fun onResults(bundle: Bundle?) {
         val text = bundle?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             ?.firstOrNull().orEmpty()
-        if (text.isNotBlank()) {
-            if (finalized.isNotEmpty()) finalized.append(' ')
-            finalized.append(text)
-            partial = ""
-            idleSessions = 0
-        } else {
-            idleSessions += 1
+        Log.d(TAG, "onResults '${text.take(80)}' stop=$stopRequested partial='${partial.take(40)}'")
+        when {
+            text.isNotBlank() -> {
+                // The final supersedes this session's partial.
+                partial = ""
+                if (finalized.isNotEmpty()) finalized.append(' ')
+                finalized.append(text)
+                idleSessions = 0
+            }
+            // This device often ends sessions with a BLANK final while the words only
+            // ever arrived as partials. Commit them or the next session's partial
+            // overwrites everything said before the pause.
+            partial.isNotBlank() -> {
+                commitPartial()
+                idleSessions = 0
+            }
+            else -> idleSessions += 1
         }
         onTranscript(transcript)
         continueOrFinish()
     }
 
     override fun onError(error: Int) {
+        Log.d(TAG, "onError $error stop=$stopRequested len=${transcript.length}")
         if (finished) return
+        if (partial.isNotBlank()) {
+            commitPartial()
+            idleSessions = 0
+        }
         if (transcript.isBlank()) {
             // Nothing said yet (spurious NO_MATCH/timeouts): keep the mic alive.
             blankRestarts += 1
@@ -98,6 +119,12 @@ class SpeechCapture(
             idleSessions += 1
             continueOrFinish()
         }
+    }
+
+    private fun commitPartial() {
+        if (finalized.isNotEmpty()) finalized.append(' ')
+        finalized.append(partial)
+        partial = ""
     }
 
     /** Auto-stop only after the user tapped, or after sustained silence following speech. */
@@ -123,10 +150,12 @@ class SpeechCapture(
     private fun finish() {
         if (finished) return
         finished = true
+        Log.d(TAG, "finish transcript='${transcript.take(120)}'")
         onFinished(transcript)
     }
 
     private companion object {
+        const val TAG = "JustMetSpeech"
         const val SILENCE_MS = 4000
         const val HEARING_RMS_DB = 4f
         /** Empty sessions (~SILENCE_MS each) after real speech before auto-finishing. */

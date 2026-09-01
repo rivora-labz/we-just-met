@@ -86,6 +86,7 @@ private object OrbSpec {
 }
 
 private const val STOP_RESULT_GRACE_MS = 900L
+private const val CAPTURE_TAG = "JustMetCapture"
 
 /**
  * TakePicture with NO_HISTORY: the camera activity must never linger on our task stack,
@@ -130,8 +131,11 @@ fun CaptureScreen(
 
     val beginExtraction: (String) -> Unit = { text ->
         if (extraction == null) {
+            android.util.Log.d(CAPTURE_TAG, "beginExtraction len=${text.length} '${text.take(120)}'")
             extraction = scope.async {
-                runCatching { extract(text) }.getOrElse { ContactDraft(note = text.trim()) }
+                runCatching { extract(text) }
+                    .onFailure { android.util.Log.w(CAPTURE_TAG, "extract failed", it) }
+                    .getOrElse { ContactDraft(note = text.trim()) }
             }
             countingDown = true
         }
@@ -232,9 +236,18 @@ fun CaptureScreen(
             CountdownOverlay(
                 onFinished = {
                     scope.launch {
-                        val draft = withTimeoutOrNull(AppConfig.EXTRACTION_TIMEOUT_MS) {
+                        val spoken = transcript.trim()
+                        val extracted = withTimeoutOrNull(AppConfig.EXTRACTION_TIMEOUT_MS) {
                             extraction?.await()
-                        } ?: ContactDraft(note = transcript.trim())
+                        }
+                        // The heard words must NEVER be lost: an all-empty extraction
+                        // still lands the raw transcript on the editable card.
+                        val draft = when {
+                            extracted == null -> ContactDraft(note = spoken)
+                            extracted.isEmpty && spoken.isNotBlank() -> extracted.copy(note = spoken)
+                            else -> extracted
+                        }
+                        android.util.Log.d(CAPTURE_TAG, "captured draft=$draft")
                         pendingDraft = draft
                         runCatching { takeSelfie.launch(WhatsAppSender.selfieUri(context)) }
                             .onFailure { onCaptured(draft, null) }
